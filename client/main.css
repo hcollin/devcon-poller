@@ -1,0 +1,34 @@
+* {
+  padding: 0;
+  margin: 0;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  outline: 0;
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  height: 100%;
+  color: white;
+
+  font-family: "Verdana", sans-serif;
+
+  background: url('images/background.png');
+  background-size: cover;
+  background-position: center center;
+
+
+}
+
+#render-target {
+  height: 100%;
+
+}
+
+.container {
+  height: 100%;
+}
