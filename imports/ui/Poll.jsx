@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { Meteor } from 'meteor/meteor';
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 
 import { createContainer } from 'meteor/react-meteor-data';
 
@@ -55,11 +56,15 @@ class Poll extends Component {
                 </div>
             )
         }
+
         if(this.state.voted) {
             return (
               <div className="v-poll">
                   <h2>Kiitos äänestäsi!</h2>
                   <p>Aikaa seuraavaan kysymykseen: ei tietoo</p>
+                  <Link to="/results">
+                      Tulokset
+                  </Link>
               </div>
             );
         }
