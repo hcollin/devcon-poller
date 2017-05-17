@@ -20,7 +20,6 @@ class App extends Component {
   }
 
   render() {
-    console.log("polls", this.props.polls);
     const targetPoll = this.props.polls[0];
     return (
       <div className="container">

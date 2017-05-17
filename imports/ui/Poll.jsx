@@ -3,31 +3,46 @@ import { Meteor } from 'meteor/meteor';
 
 import { createContainer } from 'meteor/react-meteor-data';
 
-import { Votes } from '../api/votes.js';
+import { Polls } from '../api/polls.js';
 
 class Poll extends Component {
 
     constructor(props) {
         super(props);
 
-        console.log("Poll.props.hasVoted?", this.props.hasVoted);
-        console.log("Poll.props?", this.props);
-
         this.state = {
             voted: false
         };
 
         this.handleVote = this.handleVote.bind(this);
+        this.debugVotes = this.debugVotes.bind(this);
+    }
+
+    componentWillReceiveProps(nextProps) {
+        if(nextProps.question.key)  {
+            const hasVoted = Polls.find({"key": nextProps.question.key, "votes.voter": nextProps.localId}).count();
+            if(hasVoted > 0) {
+                this.setState({
+                    voted: true
+                });
+            }
+        }
+
+
     }
 
     handleVote(e) {
-        console.log("Vote!", e.target.value);
-        Meteor.call('votes.vote', this.props.question.name, e.target.value, this.props.localId, (err, res) => {
-            console.log("Voted!");
-            this.setState({voted: true});
+
+        Meteor.call('polls.vote', this.props.question.key, e.target.value, this.props.localId, (err, res) => {
+            // Nothing to do here!
         });
+
+
     }
 
+    debugVotes(e) {
+        console.debug("Current Polls: ", Polls.find().fetch());
+    }
 
     render() {
         // Give tasks a different className when they are checked off,
@@ -40,11 +55,19 @@ class Poll extends Component {
                 </div>
             )
         }
+        if(this.state.voted) {
+            return (
+              <div className="v-poll">
+                  <h2>Kiitos äänestäsi!</h2>
+                  <p>Aikaa seuraavaan kysymykseen: ei tietoo</p>
+              </div>
+            );
+        }
         return (
             <div className="v-poll">
                 <img className="v-poll-slogan" src="images/slogan.png" />
 
-                <div className="v-poll-question">
+                <div className="v-poll-question" onClick={this.debugVotes}>
                     <h1 className="v-poll-question-h1">{p.question}</h1>
                 </div>
 
@@ -77,7 +100,6 @@ export default createContainer(() => {
     const lid = localStorage.getItem('localid');
 
     return {
-        hasVoted: Votes.find({"votes.voter": lid}).fetch(),
         localId: lid
     };
 }, Poll);

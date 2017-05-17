@@ -10,11 +10,6 @@ if (Meteor.isServer) {
     Meteor.publish('votes', function pollsPublication() {
         return Votes.find({});
     });
-
-    Meteor.publish('hasVoted', function(qkey, lid) {
-        return Votes.find({"qkey": qkey, "votes.voter": lid}).count();
-    });
-
 }
 
 Meteor.methods({
@@ -23,15 +18,27 @@ Meteor.methods({
         console.log("Method votes.voted", qkey, akey, lid);
 
 
-        // console.log("hasVoted?", Votes);
+        // console.log("hasVoted?", Votes.find());
 
         //
-        // let voteObj = {
-        //     "voter": locallid,
-        //     "answer": akey,
-        //     "when": new Date()
-        // };
-        //
+        let voteObj = {
+            "voter": lid,
+            "answer": akey,
+            "when": new Date(),
+            "qkey": qkey
+        };
+
+        const hasVoted = Votes.find({"qkey": qkey, "votes.voter": lid}).count();
+
+
+        console.log("VoteObject", voteObj);
+        console.log("Voter has voted for this question? ", hasVoted);
+
+        Votes.update({"qkey": qkey}, {
+            $push: { votes: voteObj}
+        });
+
+
         // Votes.update({qkey: qkey, "totals.key": akey}, {
         //     $inc: { "totals.$.total": 1 }
         // });
@@ -39,58 +46,14 @@ Meteor.methods({
         // Votes.update({qkey: qkey }, {
         //     $push: { "votes": voteObj }
         // });
+        return true;
 
     },
-    'votes.init'(qkey, akeys) {
-
-        let totals = [];
-        for(let i = 0; i<akeys.length; i++) {
-            totals.push({
-                key : akeys[i],
-                total: 0
-            });
-        }
+    'votes.insert'(qkey) {
 
         Votes.insert({
-            qkey: qkey,
-            votes: [],
-            totals: totals
+            qkey: "qkey",
+            votes: []
         })
     }
-    // 'tasks.remove'(taskId) {
-    //     check(taskId, String);
-    //
-    //     const task = Tasks.findOne(taskId);
-    //     if (task.private && task.owner !== this.userId) {
-    //         // If the task is private, make sure only the owner can delete it
-    //         throw new Meteor.Error('not-authorized');
-    //     }
-    //
-    //     Tasks.remove(taskId);
-    // },
-    // 'tasks.setChecked'(taskId, setChecked) {
-    //     check(taskId, String);
-    //     check(setChecked, Boolean);
-    //
-    //     const task = Tasks.findOne(taskId);
-    //     if (task.private && task.owner !== this.userId) {
-    //         // If the task is private, make sure only the owner can check it off
-    //         throw new Meteor.Error('not-authorized');
-    //     }
-    //
-    //     Tasks.update(taskId, { $set: { checked: setChecked } });
-    // },
-    // 'tasks.setPrivate'(taskId, setToPrivate) {
-    //     check(taskId, String);
-    //     check(setToPrivate, Boolean);
-    //
-    //     const task = Tasks.findOne(taskId);
-    //
-    //     // Make sure only the task owner can make a task private
-    //     if (task.owner !== this.userId) {
-    //         throw new Meteor.Error('not-authorized');
-    //     }
-    //
-    //     Tasks.update(taskId, { $set: { private: setToPrivate } });
-    // },
 });

@@ -14,63 +14,35 @@ if (Meteor.isServer) {
 
 Meteor.methods({
     'polls.insert'(opts) {
-
-
-
+        console.log("Polls.insert")
         Polls.insert({
-            pollname: opts.name,
+            key: opts.key,
             question: opts.question,
-            answers: opts.choises,
+            answers: opts.answers,
+            votes: [],
             createdAt: new Date()
         });
     },
-    'polls.populate'() {
-        const polls = [{
-            name: "jsframework",
-            question: "Suosikki JS Framework tai alusta?",
-            answers: [
-                {
-                    key: "react",
-                    text: "ReactJS"
-                },
-                {
-                    key: "angular1",
-                    text: "AngularJS"
-                },
-                {
-                    key: "angular2",
-                    text: "Angular 2"
-                },
-                {
-                    key: "ember",
-                    text: "EmberJS"
-                },
-                {
-                    key: "vue",
-                    text: "VueJS"
-                },
-                {
-                    key: "vanilla",
-                    text: "Vanilla JS"
-                },
-                {
-                    key: "jquery",
-                    text: "jquery"
-                },
-                {
-                    key: "meteor",
-                    text: "Meteor"
-                },
-                {
-                    key: "nojs",
-                    text: "JavaScript Sucks!"
-                }
-            ]
-        }];
+    'polls.vote'(qkey, akey, lid) {
 
 
+        const hasVoted = Polls.find({"key": qkey, "votes.voter": lid}).count();
+        console.log("Has this user voted already?", hasVoted);
+        if(hasVoted > 0) {
+            return;
+        }
 
-    }
+        const voteObj = {
+            "voter": lid,
+            "answer": akey,
+            "when": new Date(),
+            "qkey": qkey
+        };
+        console.log("Vote Object in Polls", voteObj);
+        Polls.update({key: qkey}, {
+            $push: { "votes": voteObj }
+        });
+    },
     // 'tasks.remove'(taskId) {
     //     check(taskId, String);
     //

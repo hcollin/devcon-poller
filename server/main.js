@@ -4,15 +4,31 @@ import '../imports/api/localids.js'
 
 import { Polls } from '../imports/api/polls.js';
 import { Votes } from '../imports/api/votes.js';
+
 import { Users } from '../imports/api/localids.js';
 import { Meteor } from 'meteor/meteor';
 
 
 Meteor.startup(() => {
 
+
+
+    if(Meteor.isDevelopment) {
+        console.log("Is development! Nuke everything at startup!");
+        Polls.remove({});
+        Votes.remove({});
+    }
+
+    if(Meteor.isProduction) {
+        console.log("Is Production! BEWARE!");
+    }
+
+
+
     if(Polls.find().count() === 0) {
-        Polls.insert({
-            name: "jsframework",
+        console.log("Populate questions!");
+        Meteor.call("polls.insert", {
+            key: "jsframework",
             question: "Suosikki JS Framework tai alusta?",
             answers: [
                 {
@@ -52,6 +68,17 @@ Meteor.startup(() => {
                     text: "JavaScript Sucks!"
                 }
             ]
+        });
+
+
+
+        // console.log("Votes", Votes);
+
+
+
+        Votes.insert({
+            qkey: "jsframework",
+            votes: []
         });
     }
 });
