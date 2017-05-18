@@ -45,11 +45,13 @@ class Results extends Component {
 
         return (
             <div className="v-results">
+                <img src="images/slogan.png" className="v-results-slogan" />
                 <header className="v-results-header">
                     <h2 className="v-results-header-h2">Results for...</h2>
                     <h1 className="v-results-header-h1">{this.props.question.question}</h1>
                 </header>
                 <div className="v-results-answers">
+
                 {this.props.question && this.props.question.answers.map((answer) => {
                     const votes = votesPerAnswer[answer.key];
                     const votePerc = Math.round((totalVotes > 0 && votes > 0 ? votes / totalVotes : 0) * 100);
