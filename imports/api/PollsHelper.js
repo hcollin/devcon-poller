@@ -7,6 +7,7 @@ import { MasterState } from './MasterState.js';
 let _currentPoll = -1;
 const _startTime = new Date().getTime() + 2000;
 
+
 const PollsHelper = {
     // How many minutes each question is active.
     liveTime: 0.5,
@@ -55,6 +56,35 @@ const PollsHelper = {
     },
     prevPoll: () => {
 
+    },
+    getStatus: () => {
+        const state = PollsHelper.getState();
+
+        if(state) {
+            return state.mainState;
+        }
+        return 0;
+    },
+    isActive: () => {
+        const state = PollsHelper.getState();
+        return (state && state.mainState === 1);
+    },
+    isDone: () => {
+        const state = PollsHelper.getState();
+        return (state && state.mainState === 2);
+    },
+    isWaiting: () => {
+        const state = PollsHelper.getState();
+        return (state && state.mainState === 0);
+    },
+    setStatusToActive: () => {
+        Meteor.call('masterstate.setstatus', 1);
+    },
+    setStatusToDone: () => {
+        Meteor.call('masterstate.setstatus', 2);
+    },
+    setStatusToWaiting: () => {
+        Meteor.call('masterstate.setstatus', 0);
     },
     countCurrent: () => {
         const nowTime = new Date().getTime();

@@ -19,7 +19,8 @@ Meteor.methods({
             startAt: startTime,
             liveTime: defaultLiveTime,
             currentPoll: -1,
-            key: "POLLER"
+            key: "POLLER",
+            mainState: 0
         });
     },
     'masterstate.next'() {
@@ -31,5 +32,11 @@ Meteor.methods({
         MasterState.update({key: "POLLER"}, {
             $set: { currentPoll: targetOrder}
         });
+    },
+    'masterstate.setstatus'(targetStatus) {
+        MasterState.update({key: "POLLER"}, {
+            $set: { mainState: targetStatus}
+        });
     }
+
 });

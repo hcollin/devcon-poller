@@ -111,8 +111,8 @@ Meteor.startup(() => {
 
         Meteor.setTimeout(() => {
             console.log("GO Go GO!");
+            PollsHelper.setStatusToActive();
             PollsHelper.setPoll(0);
-
             poller();
 
         }, waitTime);
@@ -131,6 +131,7 @@ Meteor.startup(() => {
             if(c >= pollCount) {
                 Meteor.clearInterval(p);
                 PollsHelper.setPoll(-1);
+                PollsHelper.setStatusToDone();
             } else {
                 PollsHelper.nextPoll();
                 c++;

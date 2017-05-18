@@ -7,6 +7,7 @@ import { createContainer } from 'meteor/react-meteor-data';
 import { Polls } from '../api/polls.js';
 
 import UserId from '../api/userid.js';
+import PollsHelper from '../api/PollsHelper.js';
 
 class Poll extends Component {
 
@@ -48,18 +49,32 @@ class Poll extends Component {
 
     render() {
 
+
+        const hasVoted = UserId.hasVotedFor(this.props.question.key);
         // Give tasks a different className when they are checked off,
         // so that we can style them nicely in CSS
         const p = this.props.question;
         if(!p) {
-            return (
-                <div className="v-poll">
+            if(PollsHelper.isDone()) {
+                //TODO: Make final results page!
+                return (
+                    <div className="v-poll">
+                        <h1>Kiitos osallistumisesta!</h1>
 
+                    </div>
+                );
+            }
+            //TODO: Make counter to when the questionary begins
+            return (
+
+                <div className="v-poll">
+                    <h1>Odotellaan kysymyksiä!</h1>
                 </div>
             )
         }
 
-        if(this.state.voted) {
+        if(hasVoted) {
+            //TODO: Make a counter to the next question and show it!
             return (
               <div className="v-poll">
                   <h2>Kiitos äänestäsi!</h2>
