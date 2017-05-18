@@ -2,6 +2,8 @@ import { Meteor } from 'meteor/meteor';
 import { Mongo } from 'meteor/mongo';
 import { check } from 'meteor/check';
 
+import PollsHelper from './PollsHelper.js';
+
 export const Polls = new Mongo.Collection('polls');
 
 if (Meteor.isServer) {
@@ -14,13 +16,24 @@ if (Meteor.isServer) {
 
 Meteor.methods({
     'polls.insert'(opts) {
-        console.log("Polls.insert")
+        console.log("Polls.insert");
+        const nt = new Date().getTime();
+
+        // console.log("OPTS", opts, PollsHelper.liveTime, PollsHelper.startTime);
+
+        const start = PollsHelper.startTime + (1000 * 60 * PollsHelper.liveTime * opts.order);
+        const end = start + (1000 * 60 * PollsHelper.liveTime) - 1;
+
         Polls.insert({
             key: opts.key,
             question: opts.question,
             answers: opts.answers,
+            order: opts.order,
             votes: [],
-            createdAt: new Date()
+            active: false,
+            createdAt: new Date(),
+            from: start,
+            to: end
         });
     },
     'polls.vote'(qkey, akey, lid) {

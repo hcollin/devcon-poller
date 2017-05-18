@@ -8,8 +8,10 @@ import { Meteor } from 'meteor/meteor';
 import { createContainer } from 'meteor/react-meteor-data';
 
 import { Polls } from '../api/polls.js';
+import { MasterState } from '../api/MasterState.js';
 
 import UserId from '../api/userid.js';
+import PollsHelper from '../api/PollsHelper.js';
 
 import Poll from './Poll.jsx';
 import Results from './Results.jsx';
@@ -18,14 +20,16 @@ import Results from './Results.jsx';
 class App extends Component {
   constructor(props) {
     super(props);
-
     // create a new user id if one does not exist yet!
     UserId.create();
-
   }
 
   render() {
-    const targetPoll = this.props.polls[0];
+    // const targetPoll = this.props.polls[0];
+    const targetPoll = PollsHelper.getCurrent();
+
+    console.log("targetPoll  : ", targetPoll);
+
     return (
         <Router>
           <div className="container">
@@ -44,8 +48,10 @@ class App extends Component {
 
 export default createContainer(() => {
   Meteor.subscribe('polls');
+  Meteor.subscribe('masterstate');
 
   return {
-    polls: Polls.find({}, { sort: { createdAt: -1 } }).fetch()
+      polls: Polls.find({}, { sort: { order: 1 } }).fetch(),
+      masterState: MasterState.find().fetch()
   };
 }, App);
