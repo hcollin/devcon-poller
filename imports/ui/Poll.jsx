@@ -23,8 +23,7 @@ class Poll extends Component {
 
     componentWillReceiveProps(nextProps) {
         if(nextProps.question.key)  {
-            const hasVoted = Polls.find({"key": nextProps.question.key, "votes.voter": nextProps.userId}).count();
-            if(hasVoted > 0) {
+            if(UserId.hasVotedFor(nextProps.question.key)) {
                 this.setState({
                     voted: true
                 });

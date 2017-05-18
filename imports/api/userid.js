@@ -1,5 +1,6 @@
 
 import { Meteor } from 'meteor/meteor';
+import { Polls } from './polls.js';
 
 
 let _userId = null;
@@ -47,6 +48,10 @@ const UserId = {
         if (Meteor.isClient) {
             localStorage.removeItem('userId')
         }
+    },
+    hasVotedFor: (qkey) => {
+        const hasVoted = Polls.find({"key": qkey, "votes.voter": UserId.get()}).count();
+        return hasVoted > 0;
     }
 
 };

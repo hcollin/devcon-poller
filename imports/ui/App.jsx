@@ -8,7 +8,6 @@ import { Meteor } from 'meteor/meteor';
 import { createContainer } from 'meteor/react-meteor-data';
 
 import { Polls } from '../api/polls.js';
-import { LocaIds } from '../api/localids.js';
 
 import UserId from '../api/userid.js';
 
@@ -23,10 +22,6 @@ class App extends Component {
     // create a new user id if one does not exist yet!
     UserId.create();
 
-    // if(!localStorage.getItem('localid')) {
-    //   console.log("Create local id");
-    //   Meteor.call('localids.insert');
-    // }
   }
 
   render() {
