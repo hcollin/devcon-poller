@@ -12,7 +12,6 @@ import { Meteor } from 'meteor/meteor';
 Meteor.startup(() => {
 
 
-
     if(Meteor.isDevelopment) {
         console.log("Is development! Nuke everything at startup!");
         Polls.remove({});

@@ -4,6 +4,8 @@ import { check } from 'meteor/check';
 
 export const LocalIds = new Mongo.Collection('localids');
 
+
+
 if (Meteor.isServer) {
     // This code only runs on the server
     // Only publish tasks that are public or belong to the current user
@@ -26,7 +28,7 @@ Meteor.methods({
             createdAt: new Date()
         });
 
-        localStorage.setItem('localid', results);
+        // localStorage.setItem('localid', results);
 
         return localId;
     }

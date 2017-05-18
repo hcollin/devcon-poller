@@ -1,5 +1,5 @@
-import React, { Component, PropTypes } from 'react';
-import ReactDOM from 'react-dom';
+import React, { Component } from 'react';
+
 
 
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
@@ -10,6 +10,8 @@ import { createContainer } from 'meteor/react-meteor-data';
 import { Polls } from '../api/polls.js';
 import { LocaIds } from '../api/localids.js';
 
+import UserId from '../api/userid.js';
+
 import Poll from './Poll.jsx';
 import Results from './Results.jsx';
 
@@ -18,14 +20,13 @@ class App extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      view: "poll"
-    };
+    // create a new user id if one does not exist yet!
+    UserId.create();
 
-    if(!localStorage.getItem('localid')) {
-      console.log("Create local id");
-      Meteor.call('localids.insert');
-    }
+    // if(!localStorage.getItem('localid')) {
+    //   console.log("Create local id");
+    //   Meteor.call('localids.insert');
+    // }
   }
 
   render() {

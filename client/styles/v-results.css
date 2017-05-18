@@ -51,7 +51,7 @@
 .v-results-answer-column-value {
     flex: 1;
     display: flex;
-    align-items: center;
+    align-items: flex-end;
     justify-content: center;
 
 }
@@ -63,8 +63,11 @@
 
     width: 64px;
     height: 64px;
-    background-color: black;
-    border-radius: 32px;
+    background-color: rgba(0,0,0,0.8);
+    border-top-right-radius: 16px 32px;
+    border-top-left-radius: 16px 32px;
+
+    border-top: solid 8px rgba(128,0,0,0.5);
 
     display: flex;
     align-items: center;

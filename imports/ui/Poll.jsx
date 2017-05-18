@@ -6,6 +6,8 @@ import { createContainer } from 'meteor/react-meteor-data';
 
 import { Polls } from '../api/polls.js';
 
+import UserId from '../api/userid.js';
+
 class Poll extends Component {
 
     constructor(props) {
@@ -21,7 +23,7 @@ class Poll extends Component {
 
     componentWillReceiveProps(nextProps) {
         if(nextProps.question.key)  {
-            const hasVoted = Polls.find({"key": nextProps.question.key, "votes.voter": nextProps.localId}).count();
+            const hasVoted = Polls.find({"key": nextProps.question.key, "votes.voter": nextProps.userId}).count();
             if(hasVoted > 0) {
                 this.setState({
                     voted: true
@@ -34,7 +36,7 @@ class Poll extends Component {
 
     handleVote(e) {
 
-        Meteor.call('polls.vote', this.props.question.key, e.target.value, this.props.localId, (err, res) => {
+        Meteor.call('polls.vote', this.props.question.key, e.target.value, this.props.userId, (err, res) => {
             // Nothing to do here!
         });
 
@@ -46,6 +48,7 @@ class Poll extends Component {
     }
 
     render() {
+
         // Give tasks a different className when they are checked off,
         // so that we can style them nicely in CSS
         const p = this.props.question;
@@ -102,10 +105,8 @@ class Poll extends Component {
 export default createContainer(() => {
     Meteor.subscribe('votes');
 
-    const lid = localStorage.getItem('localid');
-
     return {
-        localId: lid
+        userId: UserId.get()
     };
 }, Poll);
 

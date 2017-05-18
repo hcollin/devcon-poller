@@ -3,10 +3,9 @@ import { Meteor } from 'meteor/meteor';
 
 import { createContainer } from 'meteor/react-meteor-data';
 
-
-
-
 import { Polls } from '../api/polls.js';
+
+import UserId from '../api/userid.js';
 
 class Results extends Component {
 
@@ -80,10 +79,8 @@ class Results extends Component {
 export default createContainer(() => {
     Meteor.subscribe('votes');
 
-    const lid = localStorage.getItem('localid');
-
     return {
-        localId: lid
+        userId: UserId.get()
     };
 }, Results);
 
