@@ -15,6 +15,7 @@ import PollsHelper from '../api/PollsHelper.js';
 
 import Poll from './Poll.jsx';
 import Results from './Results.jsx';
+import FinalResults from './FinalResults.jsx';
 
 // App component - represents the whole app
 class App extends Component {
@@ -28,6 +29,18 @@ class App extends Component {
     // const targetPoll = this.props.polls[0];
     const targetPoll = PollsHelper.getCurrent();
 
+    const done = PollsHelper.isDone();
+
+    if(done) {
+        return (
+            <Router>
+                <div className="container">
+                    <FinalResults />
+                </div>
+            </Router>
+        )
+    }
+
     console.log("targetPoll  : ", targetPoll);
 
     return (
@@ -38,6 +51,9 @@ class App extends Component {
               )} />
               <Route exact path="/results" render={ () => (
                   <Results question={targetPoll} />
+              )} />
+              <Route exact path="/finalresults" render={ () => (
+                  <FinalResults />
               )} />
 
           </div>

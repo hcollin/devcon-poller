@@ -75,7 +75,6 @@ class Results extends Component {
 }
 
 export default createContainer(() => {
-    Meteor.subscribe('votes');
 
     return {
         userId: UserId.get()
