@@ -9,6 +9,9 @@ import { Polls } from '../api/polls.js';
 import UserId from '../api/userid.js';
 import PollsHelper from '../api/PollsHelper.js';
 
+import Waiting from './Waiting.jsx';
+import Timer from './Timer.jsx';
+
 class Poll extends Component {
 
     constructor(props) {
@@ -55,33 +58,31 @@ class Poll extends Component {
         // so that we can style them nicely in CSS
         const p = this.props.question;
         if(!p) {
-            if(PollsHelper.isDone()) {
-                //TODO: Make final results page!
-                return (
-                    <div className="v-poll">
-                        <h1>Kiitos osallistumisesta!</h1>
 
-                    </div>
-                );
-            }
-            //TODO: Make counter to when the questionary begins
             return (
-
-                <div className="v-poll">
-                    <h1>Odotellaan kysymyksiä!</h1>
-                </div>
+                <Waiting />
             )
         }
 
         if(hasVoted) {
             //TODO: Make a counter to the next question and show it!
+
+            const nextPollStarts = PollsHelper.getNextPollStartTime();
+
             return (
               <div className="v-poll">
-                  <h2>Kiitos äänestäsi!</h2>
-                  <p>Aikaa seuraavaan kysymykseen: ei tietoo</p>
+                  <h2 className="v-poll-thank-you">Kiitos!</h2>
+                  <div className="v-poll-timer-next">
+                      <Timer type="countdown"  time={nextPollStarts} />
+                  </div>
+
                   <Link to="/results">
-                      Tulokset
+                      <img src="images/results.svg" className="v-poll-link-results" />
                   </Link>
+
+                  <div className="s-logo-container">
+                      <img className="s-logo-img" src="images/logo.png" />
+                  </div>
               </div>
             );
         }
@@ -102,8 +103,12 @@ class Poll extends Component {
                 </div>
 
                 <footer className="v-poll-footer">
-
-                    <img className="v-poll-logo" src="images/logo.png" />
+                    {/*<div className="v-poll-footer-logo-container">*/}
+                        {/*<img className="v-poll-logo" src="images/logo.png" />*/}
+                    {/*</div>*/}
+                    <div className="s-logo-container">
+                        <img className="s-logo-img" src="images/logo.png" />
+                    </div>
                 </footer>
 
             </div>

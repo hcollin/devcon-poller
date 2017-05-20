@@ -46,6 +46,23 @@ const PollsHelper = {
         }
         return false;
     },
+    getNextPoll: () => {
+        const state = PollsHelper.getState();
+        if(state) {
+            const nPollNo = state.currentPoll + 1;
+            const polls = Polls.find({order: nPollNo}).fetch();
+            if(polls.length !== 1) {
+                return false;
+            }
+            return polls[0];
+
+        }
+        return false;
+    },
+    getNextPollStartTime: () => {
+        const state = PollsHelper.getState();
+        return state.startAt + ((state.currentPoll+1) * PollsHelper.getPollLife());
+    },
     setPoll: (pollOrderNo) => {
         console.log("Set Current Poll to ", pollOrderNo);
         Meteor.call('masterstate.set', pollOrderNo);

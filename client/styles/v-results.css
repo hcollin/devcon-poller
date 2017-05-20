@@ -32,6 +32,7 @@
 }
 
 
+
 .v-results-answers {
     flex: 1;
     display: flex;
@@ -92,10 +93,62 @@
 
 }
 
+.v-results-footer {
+    flex: 0 0 auto;
+    height: 100px;
+
+    display: flex;
+    flex-direction: row;
+
+    width: 100%;
+
+}
+
+.v-results-footer-timer {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+
+}
+
+.v-results-footer-timer > .c-timer {
+    border: solid 2px white;
+    padding: 12px;
+    border-radius: 12px;
+    background-color: rgba(255,255,255,0.1);
+    font-size: 32px;
+    font-weight: bold;
+}
+
+
+
+.v-results-footer-poll {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.v-results-footer-poll-img {
+    height: 80px;
+}
+
+
+
+
 .v-results-slogan {
     opacity: 0.2;
     width: 80%;
     position: absolute;
     top: 30px;
     left: 10%;
+}
+
+.v-results-timer {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+
 }

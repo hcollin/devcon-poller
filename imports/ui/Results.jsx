@@ -1,9 +1,15 @@
 import React, { Component } from 'react';
 import { Meteor } from 'meteor/meteor';
+import { Link } from 'react-router-dom';
 
 import { createContainer } from 'meteor/react-meteor-data';
 import { Polls } from '../api/polls.js';
 import UserId from '../api/userid.js';
+
+import PollsHelper from '../api/PollsHelper.js';
+
+import Timer from './Timer.jsx';
+
 
 class Results extends Component {
 
@@ -15,6 +21,9 @@ class Results extends Component {
     render() {
 
         let votesPerAnswer = {};
+
+        const nextPollStarts = PollsHelper.getNextPollStartTime();
+
         if(this.props.question) {
 
             for(let i = 0; i < this.props.question.votes.length; i++) {
@@ -46,6 +55,8 @@ class Results extends Component {
                 <header className="v-results-header">
                     <h2 className="v-results-header-h2">Results for...</h2>
                     <h1 className="v-results-header-h1">{this.props.question.question}</h1>
+
+
                 </header>
                 <div className="v-results-answers">
 
@@ -68,6 +79,19 @@ class Results extends Component {
                     }
                 )}
                 </div>
+                <footer className="v-results-footer">
+                    <div className="v-results-footer-timer">
+
+                        <Timer type="countdown" time={nextPollStarts} />
+                    </div>
+
+                    <div className="v-results-footer-poll">
+                        <Link to="/">
+                            <img src="images/poll.svg" className="v-results-footer-poll-img"/>
+                        </Link>
+                    </div>
+
+                </footer>
             </div>
         )
 

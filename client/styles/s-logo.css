@@ -1,0 +1,25 @@
+
+.s-logo-container {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+
+    width: 50%;
+    height: 100px;
+    padding-left: 10%;
+    background-color: rgba(255,255,255,0.6);
+
+    border-top-left-radius: 200px 100px;
+
+    border-left: solid 20px rgba(255, 0, 0, 0.75);
+    border-top: solid 2px rgba(255, 0, 0, 0.75);
+
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.s-logo-img {
+    max-height: 100px;
+
+}

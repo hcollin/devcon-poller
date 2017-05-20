@@ -15,7 +15,9 @@ class FinalResults extends Component {
 
         return (
             <div className="v-final-results">
-                <header className="v-final-results-header"></header>
+                <header className="v-final-results-header">
+                    <h1>Final Results</h1>
+                </header>
 
 
             </div>

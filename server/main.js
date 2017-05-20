@@ -146,12 +146,13 @@ Meteor.startup(() => {
         states = 0;
     }
 
+
     // Insert new state only if there are no state currently stored.
     if(states === 0) {
         console.log("New master state!");
-        const sTime = new Date().getTime() + 5000;
+        const sTime = new Date().getTime() + 4000;
         console.log("sTime: ", sTime);
-        Meteor.call("masterstate.insert", sTime, 0.1, () => {
+        Meteor.call("masterstate.insert", sTime, 2.2, () => {
             console.log("State set!");
             startTimer();
         });

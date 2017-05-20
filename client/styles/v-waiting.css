@@ -1,0 +1,81 @@
+
+.v-waiting {
+    display: flex;
+    align-items: center;
+    justify-content:center;
+    flex-direction: column;
+    position: relative;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+}
+
+.v-waiting-logo-container {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+
+    height: 100px;
+    padding-left: 10%;
+    background-color: rgba(255,255,255,0.5);
+
+    border-top-left-radius: 200px 100px;
+
+    border-left: solid 20px rgba(255, 0, 0, 0.75);
+    border-top: solid 2px rgba(255, 0, 0, 0.75);
+
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+
+}
+.v-waiting-logo {
+
+    max-height: 100px;
+}
+
+.v-waiting-slogan-container {
+    flex: 3;
+    width: 100%;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+}
+
+.v-waiting-img-slogan {
+    width: 80%;
+    max-height: 600px;
+}
+
+.v-waiting-timer-container {
+    flex: 2;
+    width: 100%;
+    display: flex;
+    align-items:  center;
+    justify-content: flex-start;
+
+    flex-direction: column;
+}
+
+.v-waiting-countdown-container {
+
+    padding: 36px;
+    border: solid 2px white;
+    border-radius: 12px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.v-waiting-countdown-container > label {
+    font-size: 24px;
+    font-style: italic;
+
+
+}
+
+.v-waiting-countdown-container > .c-timer{
+    font-size: 48px;
+}

@@ -13,6 +13,7 @@ import { MasterState } from '../api/MasterState.js';
 import UserId from '../api/userid.js';
 import PollsHelper from '../api/PollsHelper.js';
 
+import Waiting from './Waiting.jsx';
 import Poll from './Poll.jsx';
 import Results from './Results.jsx';
 import FinalResults from './FinalResults.jsx';
@@ -30,6 +31,16 @@ class App extends Component {
     const targetPoll = PollsHelper.getCurrent();
 
     const done = PollsHelper.isDone();
+    const notStarted = PollsHelper.isWaiting();
+
+
+    if(notStarted) {
+        return (
+            <Router>
+                <Route path="/" component={Waiting} />
+            </Router>
+        )
+    }
 
     if(done) {
         return (
