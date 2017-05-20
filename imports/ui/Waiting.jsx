@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Meteor } from 'meteor/meteor';
 
 import { createContainer } from 'meteor/react-meteor-data';
-import { Polls } from '../api/polls.js';
+import { Polls } from '../api/Polls.js';
 import UserId from '../api/userid.js';
 
 import PollsHelper from '../api/PollsHelper.js';

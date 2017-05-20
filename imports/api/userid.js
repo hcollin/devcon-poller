@@ -1,6 +1,6 @@
 
 import { Meteor } from 'meteor/meteor';
-import { Polls } from './polls.js';
+import { Polls } from './Polls.js';
 
 
 let _userId = null;

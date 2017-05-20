@@ -2,12 +2,12 @@ import React, { Component } from 'react';
 
 
 
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
 
 import { Meteor } from 'meteor/meteor';
 import { createContainer } from 'meteor/react-meteor-data';
 
-import { Polls } from '../api/polls.js';
+import { Polls } from '../api/Polls.js';
 import { MasterState } from '../api/MasterState.js';
 
 import UserId from '../api/userid.js';
@@ -17,6 +17,7 @@ import Waiting from './Waiting.jsx';
 import Poll from './Poll.jsx';
 import Results from './Results.jsx';
 import FinalResults from './FinalResults.jsx';
+import Admin from './Admin.jsx';
 
 // App component - represents the whole app
 class App extends Component {
@@ -33,43 +34,39 @@ class App extends Component {
     const done = PollsHelper.isDone();
     const notStarted = PollsHelper.isWaiting();
 
-
-    if(notStarted) {
-        return (
-            <Router>
-                <Route path="/" component={Waiting} />
-            </Router>
-        )
-    }
-
-    if(done) {
-        return (
-            <Router>
-                <div className="container">
-                    <FinalResults />
-                </div>
-            </Router>
-        )
-    }
-
     console.log("targetPoll  : ", targetPoll);
 
     return (
         <Router>
           <div className="container">
-              <Route exact path="/" render={() => (
-                  <Poll question={targetPoll} />
-              )} />
+              <Switch>
+              <Route exact path="/" render={() => {
+                  if(notStarted) {
+                      return (
+                          <Waiting />
+                      )
+                  }
+                  if(done) {
+                      return (
+                          <FinalResults />
+                      )
+                  }
+
+                  return (
+                      <Poll question={targetPoll} />
+                  );
+              }} />
               <Route exact path="/results" render={ () => (
                   <Results question={targetPoll} />
               )} />
               <Route exact path="/finalresults" render={ () => (
                   <FinalResults />
               )} />
-
+                  <Route exact path="/admin" component={Admin} />
+              </Switch>
           </div>
         </Router>
-    )
+    );
   }
 }
 

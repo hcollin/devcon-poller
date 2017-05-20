@@ -23,6 +23,11 @@ Meteor.methods({
             mainState: 0
         });
     },
+    'masterstate.reset'(startTime, questionLen) {
+        MasterState.update({key: "POLLER"}, {
+            $set: { startAt: startTime, currentPoll: -1, mainState: 0, liveTime: questionLen }
+        });
+    },
     'masterstate.next'() {
         MasterState.update({key: "POLLER"}, {
             $inc: { currentPoll: 1}

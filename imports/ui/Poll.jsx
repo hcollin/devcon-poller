@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 
 import { createContainer } from 'meteor/react-meteor-data';
 
-import { Polls } from '../api/polls.js';
+import { Polls } from '../api/Polls.js';
 
 import UserId from '../api/userid.js';
 import PollsHelper from '../api/PollsHelper.js';
@@ -60,8 +60,10 @@ class Poll extends Component {
         if(!p) {
 
             return (
-                <Waiting />
-            )
+                <div className="container">
+                    <Waiting />
+                </div>
+            );
         }
 
         if(hasVoted) {
@@ -86,6 +88,7 @@ class Poll extends Component {
               </div>
             );
         }
+
         return (
             <div className="v-poll">
                 <img className="v-poll-slogan" src="images/slogan.png" />
@@ -103,9 +106,6 @@ class Poll extends Component {
                 </div>
 
                 <footer className="v-poll-footer">
-                    {/*<div className="v-poll-footer-logo-container">*/}
-                        {/*<img className="v-poll-logo" src="images/logo.png" />*/}
-                    {/*</div>*/}
                     <div className="s-logo-container">
                         <img className="s-logo-img" src="images/logo.png" />
                     </div>

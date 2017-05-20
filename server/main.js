@@ -1,10 +1,10 @@
-import '../imports/api/polls.js'
+import '../imports/api/Polls.js'
 
 import UserId from '../imports/api/userid.js';
 
 import { Meteor } from 'meteor/meteor';
 
-import { Polls } from '../imports/api/polls.js';
+import { Polls } from '../imports/api/Polls.js';
 import { MasterState } from '../imports/api/MasterState.js';
 
 import PollsHelper from '../imports/api/PollsHelper.js';
@@ -101,64 +101,66 @@ Meteor.startup(() => {
         });
     }
 
+    PollsHelper.resetPolls();
+    PollsHelper.ACTIVATE();
 
-    function startTimer() {
-        console.log("START TIMER!");
-        let waitTime = PollsHelper.startTime() - new Date().getTime();
-
-        console.log("waitTime: ", waitTime);
-        waitTime = waitTime > 0 ? waitTime : 0;
-
-        Meteor.setTimeout(() => {
-            console.log("GO Go GO!");
-            PollsHelper.setStatusToActive();
-            PollsHelper.setPoll(0);
-            poller();
-
-        }, waitTime);
-    }
-
-    function poller() {
-
-        const pollCount = Polls.find().count();
-
-
-        const pollLife = PollsHelper.getPollLife();
-
-        let c = 1;
-        let p = Meteor.setInterval(() => {
-
-            if(c >= pollCount) {
-                Meteor.clearInterval(p);
-                PollsHelper.setPoll(-1);
-                PollsHelper.setStatusToDone();
-            } else {
-                PollsHelper.nextPoll();
-                c++;
-            }
-        },pollLife);
-    }
-
-
-    let states = MasterState.find({key: "POLLER"}).count();
-    if(states > 1) {
-        MasterState.remove({});
-        states = 0;
-    }
-
-
-    // Insert new state only if there are no state currently stored.
-    if(states === 0) {
-        console.log("New master state!");
-        const sTime = new Date().getTime() + 4000;
-        console.log("sTime: ", sTime);
-        Meteor.call("masterstate.insert", sTime, 2.2, () => {
-            console.log("State set!");
-            startTimer();
-        });
-    } else {
-        startTimer();
-    }
+    //
+    // function startTimer() {
+    //     console.log("START TIMER!");
+    //     let waitTime = PollsHelper.startTime() - new Date().getTime();
+    //
+    //     console.log("waitTime: ", waitTime);
+    //     waitTime = waitTime > 0 ? waitTime : 0;
+    //
+    //     Meteor.setTimeout(() => {
+    //         console.log("GO Go GO!");
+    //         PollsHelper.setStatusToActive();
+    //         PollsHelper.setPoll(0);
+    //         poller();
+    //
+    //     }, waitTime);
+    // }
+    //
+    // function poller() {
+    //
+    //     const pollCount = Polls.find().count();
+    //
+    //
+    //     const pollLife = PollsHelper.getPollLife();
+    //
+    //     let c = 1;
+    //     let p = Meteor.setInterval(() => {
+    //
+    //         if(c >= pollCount) {
+    //             Meteor.clearInterval(p);
+    //             PollsHelper.setPoll(-1);
+    //             PollsHelper.setStatusToDone();
+    //         } else {
+    //             PollsHelper.nextPoll();
+    //             c++;
+    //         }
+    //     },pollLife);
+    // }
+    //
+    //
+    // let states = MasterState.find({key: "POLLER"}).count();
+    // if(states > 1) {
+    //     MasterState.remove({});
+    //     states = 0;
+    // }
+    //
+    // // Insert new state only if there are no state currently stored.
+    // if(states === 0) {
+    //     console.log("New master state!");
+    //     const sTime = new Date().getTime() + 6000;
+    //     console.log("sTime: ", sTime);
+    //     Meteor.call("masterstate.insert", sTime, 0.2, () => {
+    //         console.log("State set!");
+    //         startTimer();
+    //     });
+    // } else {
+    //     startTimer();
+    // }
 
 
 

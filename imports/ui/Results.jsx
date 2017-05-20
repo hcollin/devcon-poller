@@ -3,7 +3,7 @@ import { Meteor } from 'meteor/meteor';
 import { Link } from 'react-router-dom';
 
 import { createContainer } from 'meteor/react-meteor-data';
-import { Polls } from '../api/polls.js';
+import { Polls } from '../api/Polls.js';
 import UserId from '../api/userid.js';
 
 import PollsHelper from '../api/PollsHelper.js';

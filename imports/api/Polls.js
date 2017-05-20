@@ -16,7 +16,6 @@ if (Meteor.isServer) {
 
 Meteor.methods({
     'polls.insert'(opts) {
-        console.log("Polls.insert");
         const nt = new Date().getTime();
 
         // console.log("OPTS", opts, PollsHelper.liveTime, PollsHelper.startTime);
@@ -56,6 +55,12 @@ Meteor.methods({
             $push: { "votes": voteObj }
         });
     },
+    'polls.reset'() {
+        console.log("polls.reset");
+        Polls.update({}, {
+            $set: {votes: [], active: false}
+        }, {multi: true});
+    }
     // 'tasks.remove'(taskId) {
     //     check(taskId, String);
     //

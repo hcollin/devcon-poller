@@ -1,12 +1,13 @@
 
 import { Meteor } from 'meteor/meteor';
-import { Polls } from './polls.js';
+import { Polls } from './Polls.js';
 import { MasterState } from './MasterState.js';
 
 
 let _currentPoll = -1;
 const _startTime = new Date().getTime() + 2000;
 
+let _poller = false;
 
 const PollsHelper = {
     // How many minutes each question is active.
@@ -103,11 +104,62 @@ const PollsHelper = {
     setStatusToWaiting: () => {
         Meteor.call('masterstate.setstatus', 0);
     },
-    countCurrent: () => {
-        const nowTime = new Date().getTime();
-        const obj = Polls.find( {from: { $lt: nowTime }, to: { $gt: nowTime } } ).fetch();
-        return obj[0] ? obj[0] : false;
+    resetPolls: (startAt, questionTime) => {
+        startAt = startAt > new Date().getTime() ? startAt : new Date().getTime() + 7000;
+        questionTime = questionTime > 0 ? questionTime : 0.1;
+
+        if(!_poller) {
+            PollsHelper.DEACTIVATE();
+        }
+
+        let states = MasterState.find({key: "POLLER"}).count();
+        if(states !== 1) {
+            MasterState.remove({});
+            Meteor.call("masterstate.insert", startAt, questionTime, () => {
+                Meteor.call('polls.reset');
+                // PollsHelper.ACTIVATE();
+            });
+            states = 0;
+        } else {
+            Meteor.call('masterstate.reset', startAt, questionTime);
+            Meteor.call('polls.reset');
+            // PollsHelper.ACTIVATE();
+        }
+
+    },
+    ACTIVATE: () => {
+        let waitTime = PollsHelper.startTime() - new Date().getTime();
+        waitTime = waitTime > 0 ? waitTime : 0;
+        Meteor.setTimeout(() => {
+            PollsHelper.setStatusToActive();
+            PollsHelper.setPoll(0);
+            PollsHelper.POLLER();
+
+        }, waitTime);
+    },
+    POLLER: () => {
+        console.log("Start Poller!")
+        const pollCount = Polls.find().count();
+        const pollLife = PollsHelper.getPollLife();
+        let c = 1;
+        _poller = Meteor.setInterval(() => {
+            console.log("Poller Callback!", c);
+            if(c >= pollCount) {
+                Meteor.clearInterval(_poller);
+                PollsHelper.setPoll(-1);
+                PollsHelper.setStatusToDone();
+            } else {
+                PollsHelper.nextPoll();
+                c++;
+            }
+        },pollLife);
+    },
+    DEACTIVATE: () => {
+        Meteor.clearInterval(_poller);
+        PollsHelper.setPoll(-1);
+        PollsHelper.setStatusToDone();
     }
+
 };
 
 export default PollsHelper;

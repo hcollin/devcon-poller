@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Meteor } from 'meteor/meteor';
 
 import { createContainer } from 'meteor/react-meteor-data';
-import { Polls } from '../api/polls.js';
+import { Polls } from '../api/Polls.js';
 import UserId from '../api/userid.js';
 
 class FinalResults extends Component {
@@ -19,6 +19,15 @@ class FinalResults extends Component {
                     <h1>Final Results</h1>
                 </header>
 
+                <div className="v-final-results-container">
+
+
+                </div>
+
+
+                <div className="s-logo-container">
+                    <img className="s-logo-img" src="images/logo.png" />
+                </div>
 
             </div>
         )
