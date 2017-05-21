@@ -7,3 +7,99 @@
     position: relative;
     height: 100%;
 }
+
+.v-final-results-container {
+    flex: 1;
+    width: 100%;
+
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+
+}
+
+.v-final-results-poll {
+    flex: 1 1 auto;
+    min-width: 300px;
+    max-width: 500px;
+
+    padding: 12px;
+    margin: 6px;
+
+    border: solid 2px white;
+    border-radius: 12px;
+
+    position: relative;
+
+}
+
+.v-final-results-poll-question {
+    font-size: 24px;
+    width: 90%;
+    border-bottom: solid 1px white;
+    display: block;
+    margin-bottom: 3px;
+
+}
+
+.v-final-results-poll-totalvotes {
+    position: absolute;
+    top: -2px;
+    right: -2px;
+
+    width: 48px;
+    height: 48px;
+    border: solid 2px white;
+    border-radius: 12px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background-color: rgba(255,255,255, 0.2);
+
+    font-size: 24px;
+    font-weight: bold;
+
+}
+
+.v-final-results-poll-answers {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+}
+
+.v-final-results-poll-answer {
+    flex: 0 0 auto;
+    height: 24px;
+    font-size: 16px;
+
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+
+    flex-direction: row;
+}
+
+.v-final-results-poll-answer-text {
+    flex: 4;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.v-final-results-poll-answer-votes {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.v-final-results-poll-answer-percentage {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}

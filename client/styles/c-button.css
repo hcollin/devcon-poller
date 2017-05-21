@@ -36,4 +36,5 @@
 }
 .c-button > img {
     opacity: 0.75;
+    width: 100%;
 }

@@ -23,7 +23,10 @@ class Waiting extends Component {
 
         // let countdown = new Date().getTime() + 6250000;
 
-        const countdown = PollsHelper.getNextPollStartTime();
+        const state = PollsHelper.getState();
+        const started = state.mainState > -1;
+
+        const countdown = started ? PollsHelper.getNextPollStartTime() : false;
 
         return (
             <div className="v-waiting">
@@ -35,7 +38,9 @@ class Waiting extends Component {
                 <div className="v-waiting-timer-container">
                     <h2 className="v-waiting-countdown-container">
                         <label>Kyselyt alkavat</label>
-                        <Timer type="countdown" time={countdown} />
+                        {started &&
+                            <Timer type="countdown" time={countdown} />
+                        }
                     </h2>
                 </div>
 
