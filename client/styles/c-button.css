@@ -3,18 +3,23 @@
     height: 64px;
     width: 64px;
     padding: 6px;
-    background: linear-gradient(rgba(255,192,192,0.3) 0%, rgba(255,192,192,0.5) 45%, rgba(128,64,64,0.5) 55%, rgba(255,192,192,0.3) 100%);
+    background: linear-gradient(rgba(255, 192, 192, 0.3) 0%, rgba(255, 192, 192, 0.5) 45%, rgba(128, 64, 64, 0.5) 55%, rgba(255, 192, 192, 0.3) 100%);
 
-    border: solid 2px rgba(255,255,255,0.75);
+    border: solid 2px rgba(255, 255, 255, 0.75);
     border-radius: 12px;
     cursor: pointer;
-    box-shadow: 6px 6px 6px 3px rgba(0,0,0,0.65);
+    box-shadow: 6px 6px 6px 3px rgba(0, 0, 0, 0.65);
 
     margin-top: 0;
     margin-left: 0;
     margin-bottom: 6px;
     margin-right: 6px;
+
+    color: rgba(255, 255, 255, 0.85);
+    font-size: 24px;
+    font-weight: bold;
 }
+
 
 .c-button:hover {
     background: linear-gradient(rgba(255,255,255,0.3) 0%, rgba(255,255,255,0.5) 45%, rgba(128,128,128,0.5) 55%, rgba(255,255,255,0.3) 100%);

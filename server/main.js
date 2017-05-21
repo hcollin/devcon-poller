@@ -1,4 +1,5 @@
 import '../imports/api/Polls.js'
+import '../imports/api/TickerAPI.js';
 
 import UserId from '../imports/api/userid.js';
 
@@ -8,6 +9,8 @@ import { Polls } from '../imports/api/Polls.js';
 import { MasterState } from '../imports/api/MasterState.js';
 
 import PollsHelper from '../imports/api/PollsHelper.js';
+
+import Ticker from './Ticker.js';
 
 Meteor.startup(() => {
 
@@ -101,8 +104,13 @@ Meteor.startup(() => {
         });
     }
 
-    PollsHelper.resetPolls();
-    PollsHelper.ACTIVATE();
+
+
+    Ticker.reset();
+    Ticker.start();
+
+    // PollsHelper.resetPolls();
+    // PollsHelper.ACTIVATE();
 
     //
     // function startTimer() {

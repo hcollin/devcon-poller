@@ -81,6 +81,11 @@
 }
 
 
+.v-admin-debug-area {
+    flex: 1;
+    color: white;
+}
+
 .v-admin-toolbar {
     flex: 0 0 auto;
     width: 90px;

@@ -9,7 +9,7 @@ import UserId from '../api/userid.js';
 import PollsHelper from '../api/PollsHelper.js';
 
 import Timer from './Timer.jsx';
-
+import Waiting from './Waiting.jsx';
 
 class Results extends Component {
 
@@ -40,9 +40,9 @@ class Results extends Component {
 
         if(!this.props.question) {
             return (
-                <div className="v-results">
-                    <h1>No question yet!</h1>
-                </div>
+
+                <Waiting />
+
             )
         }
 

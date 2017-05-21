@@ -95,6 +95,9 @@ const PollsHelper = {
         const state = PollsHelper.getState();
         return (state && state.mainState === 0);
     },
+    setStatusToStopped: () => {
+        Meteor.call('masterstate.setstatus', -1);
+    },
     setStatusToActive: () => {
         Meteor.call('masterstate.setstatus', 1);
     },
@@ -103,63 +106,7 @@ const PollsHelper = {
     },
     setStatusToWaiting: () => {
         Meteor.call('masterstate.setstatus', 0);
-    },
-    resetPolls: (startAt, questionTime) => {
-        startAt = startAt > new Date().getTime() ? startAt : new Date().getTime() + 7000;
-        questionTime = questionTime > 0 ? questionTime : 0.1;
-
-        if(!_poller) {
-            PollsHelper.DEACTIVATE();
-        }
-
-        let states = MasterState.find({key: "POLLER"}).count();
-        if(states !== 1) {
-            MasterState.remove({});
-            Meteor.call("masterstate.insert", startAt, questionTime, () => {
-                Meteor.call('polls.reset');
-                // PollsHelper.ACTIVATE();
-            });
-            states = 0;
-        } else {
-            Meteor.call('masterstate.reset', startAt, questionTime);
-            Meteor.call('polls.reset');
-            // PollsHelper.ACTIVATE();
-        }
-
-    },
-    ACTIVATE: () => {
-        let waitTime = PollsHelper.startTime() - new Date().getTime();
-        waitTime = waitTime > 0 ? waitTime : 0;
-        Meteor.setTimeout(() => {
-            PollsHelper.setStatusToActive();
-            PollsHelper.setPoll(0);
-            PollsHelper.POLLER();
-
-        }, waitTime);
-    },
-    POLLER: () => {
-        console.log("Start Poller!")
-        const pollCount = Polls.find().count();
-        const pollLife = PollsHelper.getPollLife();
-        let c = 1;
-        _poller = Meteor.setInterval(() => {
-            console.log("Poller Callback!", c);
-            if(c >= pollCount) {
-                Meteor.clearInterval(_poller);
-                PollsHelper.setPoll(-1);
-                PollsHelper.setStatusToDone();
-            } else {
-                PollsHelper.nextPoll();
-                c++;
-            }
-        },pollLife);
-    },
-    DEACTIVATE: () => {
-        Meteor.clearInterval(_poller);
-        PollsHelper.setPoll(-1);
-        PollsHelper.setStatusToDone();
     }
-
 };
 
 export default PollsHelper;

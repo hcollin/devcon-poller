@@ -16,21 +16,25 @@ class Admin extends Component {
 
         this.handleReset = this.handleReset.bind(this);
         this.handleDebug = this.handleDebug.bind(this);
+        this.handleStart = this.handleStart.bind(this);
 
     }
 
 
     handleReset() {
         console.log("reset!");
-        PollsHelper.resetPolls();
-        PollsHelper.ACTIVATE();
-
+        Meteor.call('ticker.reset');
     }
 
     handleDebug() {
         console.log("\nMaster State: \n", MasterState.find().fetch());
         console.log("\nPolls: \n", Polls.find().fetch());
     }
+
+    handleStart() {
+        Meteor.call('ticker.start');
+    }
+
 
     render() {
 
@@ -54,10 +58,13 @@ class Admin extends Component {
                     <div className="v-admin-toolbar">
                         <button onClick={this.handleReset} className="c-button v-admin-button-reset"><img src="images/nuke.svg" /></button>
                         <button onClick={this.handleDebug} className="c-button v-admin-button-reset"><img src="images/debug.svg" /></button>
+                        {/*<button onClick={this.handleStart} className="c-button v-admin-button-reset">GO!</button>*/}
+
                     </div>
 
                     <div className="v-admin-main-container">
                         <div className="v-admin-statusbar">
+                            <div className={state.mainState === -1 ? "active": ""}>Stopped</div>
                             <div className={state.mainState === 0 ? "active": ""}>Waiting</div>
                             <div className={state.mainState === 1 ? "active": ""}>Active</div>
                             <div className={state.mainState === 2 ? "active": ""}>Done</div>
@@ -70,6 +77,15 @@ class Admin extends Component {
                                     <div className="v-admin-polls-poll-votes">{item.votes.length}</div>
                                 </div>
                             ))}
+                        </div>
+
+                        <div className="v-admin-debug-area">
+                            CurrentPoll Order No : {state.currentPoll} <br />
+                            Main State: {state.mainState} <br />
+                            Key: {state.key} <br />
+                            Question Length : {state.liveTime} minutes <br />
+                            First question starts at: {state.startAt} <br />
+
                         </div>
                     </div>
 

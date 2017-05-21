@@ -20,13 +20,12 @@ Meteor.methods({
             liveTime: defaultLiveTime,
             currentPoll: -1,
             key: "POLLER",
-            mainState: 0
+            mainState: -1
         });
     },
     'masterstate.reset'(startTime, questionLen) {
-        MasterState.update({key: "POLLER"}, {
-            $set: { startAt: startTime, currentPoll: -1, mainState: 0, liveTime: questionLen }
-        });
+        MasterState.remove({});
+        Meteor.call('masterstate.insert', startTime, questionLen);
     },
     'masterstate.next'() {
         MasterState.update({key: "POLLER"}, {
@@ -43,5 +42,4 @@ Meteor.methods({
             $set: { mainState: targetStatus}
         });
     }
-
 });
