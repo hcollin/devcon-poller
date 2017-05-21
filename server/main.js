@@ -28,7 +28,7 @@ Meteor.startup(() => {
         console.log("Populate questions!");
 
         // Tekniikka
-        Meteor.call('polls.insert', "jsframework",  0 , "Suosikki JS Framework tai alusta?");
+        Meteor.call('polls.insert', "jsframework",  4 , "Suosikki JS Framework tai alusta?");
         Meteor.call('polls.insert', "os",           1 , "Käyttöjärjestelmänä käytän mieluiten?");
         Meteor.call('polls.insert', "ide",          2 , "Kehitysympäristö suosikkini on?");
         Meteor.call('polls.insert', "language",     3 , "Jos voisin valita seuraavan projektin pääkielen...");
@@ -36,7 +36,7 @@ Meteor.startup(() => {
 
 
         // Hauskat
-        Meteor.call('polls.insert', "offices",      4 , "Cinian seuraava toimisto pitäisi avata...");
+        Meteor.call('polls.insert', "offices",      0 , "Cinian seuraava toimisto pitäisi avata...");
 
 
 
@@ -132,7 +132,7 @@ Meteor.startup(() => {
 
 
 
-    Ticker.reset();
+    Ticker.reset(new Date().getTime() + 5000, 0.3);
     Ticker.start();
 
 });

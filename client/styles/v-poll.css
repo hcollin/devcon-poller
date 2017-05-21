@@ -60,7 +60,21 @@
     font-size: 48px;
     z-index: 20;
 
+    word-wrap: normal;
+
+    overflow: hidden;
 }
+
+.v-poll-button-answer.small {
+    font-size: 40px;
+}
+
+.v-poll-button-answer.smallest {
+    font-size: 32px;
+    -ms-word-wrap: break-word;
+    word-wrap: break-word;
+}
+
 
 .v-poll-footer {
     width: 100%;

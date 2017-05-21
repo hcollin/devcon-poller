@@ -100,11 +100,17 @@ class Poll extends Component {
                 </div>
 
                 <div className="v-poll-answers">
-                {p.answers.map((ans) =>
-                    <button className="v-poll-button-answer" key={ans.key} value={ans.key} onClick={this.handleVote}>
-                        {ans.text}
-                    </button>
-                )}
+                {p.answers.map((ans) => {
+
+                    const longestWord = Math.max(...(ans.text.split(" ").map(el => el.length)));
+                    console.log("Longest word: ", ans.text, longestWord);
+                    const buttonClasses = "v-poll-button-answer" + (longestWord < 9 ? " " : (longestWord < 13 ? " small" : " smallest"));
+                    return (
+                        <button className={buttonClasses} key={ans.key} value={ans.key} onClick={this.handleVote}>
+                            {ans.text}
+                        </button>
+                    );
+                })}
                 </div>
 
                 <footer className="v-poll-footer">
