@@ -39,8 +39,11 @@
 }
 
 .v-poll-button-answer {
-    flex: 0 0 auto;
+    flex: 1 1 auto;
     width: 30%;
+    min-width: 300px;
+    max-width: 500px;
+
     height: 30%;
     margin: 1%;
 
