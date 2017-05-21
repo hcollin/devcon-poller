@@ -34,7 +34,7 @@ class App extends Component {
     const done = PollsHelper.isDone();
     const notStarted = PollsHelper.isWaiting();
 
-    console.log("targetPoll  : ", targetPoll);
+    // console.log("targetPoll  : ", targetPoll);
 
     return (
         <Router>
@@ -56,9 +56,23 @@ class App extends Component {
                       <Poll question={targetPoll} />
                   );
               }} />
-              <Route exact path="/results" render={ () => (
-                  <Results question={targetPoll} />
-              )} />
+              <Route exact path="/results" render={ () => {
+
+                  if(notStarted) {
+                      return (
+                          <Waiting />
+                      )
+                  }
+
+                  if(done) {
+                      return (
+                          <FinalResults />
+                      )
+                  }
+                  return (
+                    <Results question={targetPoll} />
+                  );
+              }} />
               <Route exact path="/finalresults" render={ () => (
                   <FinalResults />
               )} />

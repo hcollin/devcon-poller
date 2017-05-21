@@ -28,7 +28,7 @@ class Results extends Component {
 
             for(let i = 0; i < this.props.question.votes.length; i++) {
                 const ans = this.props.question.votes[i];
-                console.log("Ans", ans);
+                // console.log("Ans", ans);
                 if(!votesPerAnswer[ans.answer]) {
                     votesPerAnswer[ans.answer] = 0;
                 }
@@ -79,22 +79,23 @@ class Results extends Component {
                     }
                 )}
                 </div>
+
                 <footer className="v-results-footer">
-
-                    <div className="v-results-footer-poll">
-                        <Link to="/">
-                            <button className="v-results-footer-poll-img c-button">
-                                <img src="images/poll.svg" />
-                            </button>
-                        </Link>
-                    </div>
-
-                    <div className="v-results-footer-timer">
-                        <Timer type="countdown" time={nextPollStarts} />
-                    </div>
-
-
                 </footer>
+
+                <div className="v-results-footer-poll">
+                    <Link to="/">
+                        <button className="v-results-footer-poll-img c-button">
+                            <img src="images/poll.svg" />
+                        </button>
+                    </Link>
+                </div>
+
+                <div className="v-results-footer-timer">
+                    <Timer type="countdown" time={nextPollStarts} key={this.props.question.key} />
+                </div>
+
+
 
                 <div className="s-logo-container">
                     <img className="s-logo-img" src="images/logo.png" />

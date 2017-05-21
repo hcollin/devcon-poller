@@ -105,10 +105,10 @@
 }
 
 .v-results-footer-timer {
-    flex: 1;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
+    position: absolute;
+    bottom: 20px;
+    left: 100px;
+    margin-bottom: 6px;
 
 
 
@@ -117,6 +117,7 @@
 .v-results-footer-timer > .c-timer {
     border: solid 2px white;
     padding: 12px;
+    height: 64px;
     border-radius: 12px;
     background-color: rgba(255,255,255,0.1);
     font-size: 32px;
