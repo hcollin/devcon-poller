@@ -27,153 +27,112 @@ Meteor.startup(() => {
     if(Polls.find().count() === 0) {
         console.log("Populate questions!");
 
-        Meteor.call("polls.insert", {
-            key: "jsframework",
-            order: 1,
-            question: "Suosikki JS Framework tai alusta?",
-            answers: [
-                {
-                    key: "react",
-                    text: "ReactJS"
-                },
-                {
-                    key: "angular1",
-                    text: "AngularJS"
-                },
-                {
-                    key: "angular2",
-                    text: "Angular 2"
-                },
-                {
-                    key: "ember",
-                    text: "EmberJS"
-                },
-                {
-                    key: "vue",
-                    text: "VueJS"
-                },
-                {
-                    key: "vanilla",
-                    text: "Vanilla JS"
-                },
-                {
-                    key: "jquery",
-                    text: "jquery"
-                },
-                {
-                    key: "meteor",
-                    text: "Meteor"
-                },
-                {
-                    key: "nojs",
-                    text: "JavaScript Sucks!"
-                }
-            ]
-        });
+        // Tekniikka
+        Meteor.call('polls.insert', "jsframework",  0 , "Suosikki JS Framework tai alusta?");
+        Meteor.call('polls.insert', "os",           1 , "Käyttöjärjestelmänä käytän mieluiten?");
+        Meteor.call('polls.insert', "ide",          2 , "Kehitysympäristö suosikkini on?");
+        Meteor.call('polls.insert', "language",     3 , "Jos voisin valita seuraavan projektin pääkielen...");
+        Meteor.call('polls.insert', "role",         5 , "Työskentelisin projektissa mieluiten?");
 
-        Meteor.call("polls.insert", {
-            key: "os",
-            order: 0,
-            question: "Kehitysympäristönä käytän mieluiten?",
-            answers: [
-                {
-                    key: "win7",
-                    text: "Windows 7"
-                },
-                {
-                    key: "win10",
-                    text: "Windows 10"
-                },
-                {
-                    key: "osx",
-                    text: "OSX"
-                },
-                {
-                    key: "ubuntu",
-                    text: "Ubuntu"
-                },
-                {
-                    key: "debian",
-                    text: "Debian"
-                },
-                {
-                    key: "msdos",
-                    text: "MS-DOS"
-                }
-            ]
-        });
+
+        // Hauskat
+        Meteor.call('polls.insert', "offices",      4 , "Cinian seuraava toimisto pitäisi avata...");
+
+
+
+        // DevCon
+        Meteor.call('polls.insert', "dcplace",             6, "DEVcon 2018 järjestetään...");
+        Meteor.call('polls.insert', "dcbestis",             7, "DEVconin paras osuus on?");
+
+
+        // Meteor.call('polls.insert', "",             8, "");
+        // Meteor.call('polls.insert', "",             9, "");
+        // Meteor.call('polls.insert', "",             10, "");
+        // Meteor.call('polls.insert', "",             11, "");
+        // Meteor.call('polls.insert', "",             12, "");
+
+
+
+        Meteor.call('polls.addanswer', "jsframework", "react", "ReactJS");
+        Meteor.call('polls.addanswer', "jsframework", "angularjs", "AngularJS");
+        Meteor.call('polls.addanswer', "jsframework", "angular2", "Angular 2");
+        Meteor.call('polls.addanswer', "jsframework", "ember", "Ember JS");
+        Meteor.call('polls.addanswer', "jsframework", "vue", "Vue JS");
+        Meteor.call('polls.addanswer', "jsframework", "vanilla", "Plain old JS");
+        Meteor.call('polls.addanswer', "jsframework", "jquery", "Jquery");
+        Meteor.call('polls.addanswer', "jsframework", "meteor", "Meteor");
+        Meteor.call('polls.addanswer', "jsframework", "jssucks", "Less JS, the better!");
+
+
+        Meteor.call('polls.addanswer', "os", "win7", "Windows 7");
+        Meteor.call('polls.addanswer', "os", "win10", "Windows 10");
+        Meteor.call('polls.addanswer', "os", "osx", "OS X");
+        Meteor.call('polls.addanswer', "os", "debian", "Debian");
+        Meteor.call('polls.addanswer', "os", "ubuntu", "Ubuntu");
+        Meteor.call('polls.addanswer', "os", "linux", "Other Linux");
+        Meteor.call('polls.addanswer', "os", "android", "Android");
+        Meteor.call('polls.addanswer', "os", "msdos", "MS-DOS");
+        Meteor.call('polls.addanswer', "os", "solaris", "Solaris");
+
+        Meteor.call('polls.addanswer', "ide", "idea", "IntelliJ");
+        Meteor.call('polls.addanswer', "ide", "eclipse", "Eclipse");
+        Meteor.call('polls.addanswer', "ide", "Netbeans", "Netbeans");
+        Meteor.call('polls.addanswer', "ide", "vstudio", "Visual Studio");
+        Meteor.call('polls.addanswer', "ide", "sublime", "Sublime Text");
+        Meteor.call('polls.addanswer', "ide", "atom", "Atom");
+        Meteor.call('polls.addanswer', "ide", "vim", "Vim");
+        Meteor.call('polls.addanswer', "ide", "emacs", "Emacs");
+        Meteor.call('polls.addanswer', "ide", "other", "Something else");
+
+        Meteor.call('polls.addanswer', "language", "python", "Python");
+        Meteor.call('polls.addanswer', "language", "js", "JavaScript");
+        Meteor.call('polls.addanswer', "language", "c", "C");
+        Meteor.call('polls.addanswer', "language", "cpp", "C++");
+        Meteor.call('polls.addanswer', "language", "java", "Java");
+        Meteor.call('polls.addanswer', "language", "csharp", "C#");
+        Meteor.call('polls.addanswer', "language", "Clojure", "Clojure");
+        Meteor.call('polls.addanswer', "language", "go", "Go");
+        Meteor.call('polls.addanswer', "language", "rust", "Rust");
+
+        Meteor.call('polls.addanswer', "offices", "turku", "Turkuun");
+        Meteor.call('polls.addanswer', "offices", "lappeenranta", "Lappeenrantaan");
+        Meteor.call('polls.addanswer', "offices", "oulu", "Ouluun");
+        Meteor.call('polls.addanswer', "offices", "tukholma", "Tukholmaan");
+        Meteor.call('polls.addanswer', "offices", "pietari", "Pietariin");
+        Meteor.call('polls.addanswer', "offices", "lontoo", "Lontooseen");
+        Meteor.call('polls.addanswer', "offices", "la", "Los Angalesiin");
+        Meteor.call('polls.addanswer', "offices", "tokio", "Tokioon");
+        Meteor.call('polls.addanswer', "offices", "kuu", "Kuuhun");
+
+
+        Meteor.call('polls.addanswer', "dcplace", "tampere", "Tampereella");
+        Meteor.call('polls.addanswer', "dcplace", "hesa", "Helsingissä");
+        Meteor.call('polls.addanswer', "dcplace", "jyvaskyla", "Jyväskylässä");
+        Meteor.call('polls.addanswer', "dcplace", "laiva", "Risteilyllä");
+        Meteor.call('polls.addanswer', "dcplace", "muu", "Jossain muualla");
+        Meteor.call('polls.addanswer', "dcplace", "never", "Ei enään ikinä!");
+
+        Meteor.call('polls.addanswer', "dcbestis", "intspeak", "Oman väen esitykset");
+        Meteor.call('polls.addanswer', "dcbestis", "extspeak", "Keynote puhuja");
+        Meteor.call('polls.addanswer', "dcbestis", "gallaria", "Demo Galleria");
+
+        Meteor.call('polls.addanswer', "role", "front", "Front-End koodarina");
+        Meteor.call('polls.addanswer', "role", "fullstack", "Full Stack koodarina");
+        Meteor.call('polls.addanswer', "role", "backend", "Backend koodarina");
+        Meteor.call('polls.addanswer', "role", "devops", "DevOps");
+        Meteor.call('polls.addanswer', "role", "maint", "Ylläpitäjänä");
+        Meteor.call('polls.addanswer', "role", "test", "Testaajana");
+        Meteor.call('polls.addanswer', "role", "pp", "Projektipäällikkönä");
+        Meteor.call('polls.addanswer', "role", "sales", "Myyjänä");
+        Meteor.call('polls.addanswer', "role", "daboss", "Isona kihona");
+
+
+
     }
 
 
 
     Ticker.reset();
     Ticker.start();
-
-    // PollsHelper.resetPolls();
-    // PollsHelper.ACTIVATE();
-
-    //
-    // function startTimer() {
-    //     console.log("START TIMER!");
-    //     let waitTime = PollsHelper.startTime() - new Date().getTime();
-    //
-    //     console.log("waitTime: ", waitTime);
-    //     waitTime = waitTime > 0 ? waitTime : 0;
-    //
-    //     Meteor.setTimeout(() => {
-    //         console.log("GO Go GO!");
-    //         PollsHelper.setStatusToActive();
-    //         PollsHelper.setPoll(0);
-    //         poller();
-    //
-    //     }, waitTime);
-    // }
-    //
-    // function poller() {
-    //
-    //     const pollCount = Polls.find().count();
-    //
-    //
-    //     const pollLife = PollsHelper.getPollLife();
-    //
-    //     let c = 1;
-    //     let p = Meteor.setInterval(() => {
-    //
-    //         if(c >= pollCount) {
-    //             Meteor.clearInterval(p);
-    //             PollsHelper.setPoll(-1);
-    //             PollsHelper.setStatusToDone();
-    //         } else {
-    //             PollsHelper.nextPoll();
-    //             c++;
-    //         }
-    //     },pollLife);
-    // }
-    //
-    //
-    // let states = MasterState.find({key: "POLLER"}).count();
-    // if(states > 1) {
-    //     MasterState.remove({});
-    //     states = 0;
-    // }
-    //
-    // // Insert new state only if there are no state currently stored.
-    // if(states === 0) {
-    //     console.log("New master state!");
-    //     const sTime = new Date().getTime() + 6000;
-    //     console.log("sTime: ", sTime);
-    //     Meteor.call("masterstate.insert", sTime, 0.2, () => {
-    //         console.log("State set!");
-    //         startTimer();
-    //     });
-    // } else {
-    //     startTimer();
-    // }
-
-
-
-
-
-
 
 });

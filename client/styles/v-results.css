@@ -107,8 +107,9 @@
 .v-results-footer-timer {
     flex: 1;
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
+
 
 
 }
@@ -125,14 +126,17 @@
 
 
 .v-results-footer-poll {
-    flex: 1;
+    flex: 0 0 auto;
+    width: 100px;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
 .v-results-footer-poll-img {
-    height: 80px;
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
 }
 
 

@@ -2,7 +2,7 @@
 .c-button {
     height: 64px;
     width: 64px;
-    padding: 6px;
+    /*padding: 6px 6px;*/
     background: linear-gradient(rgba(255, 192, 192, 0.3) 0%, rgba(255, 192, 192, 0.5) 45%, rgba(128, 64, 64, 0.5) 55%, rgba(255, 192, 192, 0.3) 100%);
 
     border: solid 2px rgba(255, 255, 255, 0.75);
@@ -18,6 +18,9 @@
     color: rgba(255, 255, 255, 0.85);
     font-size: 24px;
     font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 
@@ -36,5 +39,10 @@
 }
 .c-button > img {
     opacity: 0.75;
-    width: 100%;
+    width: 52px;
+    height: 52px;
+    margin: 0;
+    padding: 0;
+
+
 }

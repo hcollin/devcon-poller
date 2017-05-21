@@ -21,10 +21,10 @@
 .v-final-results-poll {
     flex: 1 1 auto;
     min-width: 300px;
-    max-width: 500px;
+    max-width: 400px;
 
-    max-height: 350px;
-    height: auto;
+    height: 160px;
+
 
     padding: 12px;
     margin: 6px;
@@ -41,6 +41,16 @@
 
     cursor: pointer;
 
+    overflow: hidden;
+
+    background: linear-gradient(rgba(128, 0, 0, 0.7) 0%,  rgba(16, 0, 0, 0.7) 30%,rgba(0, 0, 0, 0.6) 80%, rgba(32, 0, 0, 0.9) 100%);
+
+    box-shadow: 3px 3px 8px 4px rgba(0,0,0,0.75);
+
+}
+
+.v-final-results-poll.open {
+    height: 350px;
 }
 
 .v-final-results-poll-question {

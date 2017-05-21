@@ -9,8 +9,8 @@ let Ticker = function() {
     let ticker = false;
 
     function reset(startAt, questionLen) {
-        startAt = startAt > new Date().getTime() ? startAt : new Date().getTime() + 7000;
-        questionLen = questionLen > 0 ? questionLen : 0.1;
+        startAt = startAt > new Date().getTime() ? startAt : new Date().getTime() + 15000;
+        questionLen = questionLen > 0 ? questionLen : 2;
         stop();
 
         Meteor.call('masterstate.reset', startAt, questionLen);

@@ -20,7 +20,7 @@ class FinalResults extends Component {
 
         return (
             <div className="v-final-results">
-                
+
                 <div className="v-final-results-container">
                     {allPolls && allPolls.map((poll) => {
                         return (

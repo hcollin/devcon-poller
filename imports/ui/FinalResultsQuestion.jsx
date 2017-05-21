@@ -11,7 +11,7 @@ class FinalResultsQuestion extends Component {
         super(props);
 
         this.state = {
-            open: true
+            open: false
         };
 
         this.handleChangeListSize = this.handleChangeListSize.bind(this);
@@ -64,8 +64,11 @@ class FinalResultsQuestion extends Component {
             }
             return 0;
         });
+
+        const pollClass = "v-final-results-poll" + (this.state.open ? " open" : "");
+
         return (
-            <div className="v-final-results-poll" onClick={this.handleChangeListSize}>
+            <div className={pollClass} onClick={this.handleChangeListSize}>
                 <span className="v-final-results-poll-question">{poll.question}</span>
                 <span className="v-final-results-poll-totalvotes">{poll.votes.length}</span>
                 <div className="v-final-results-poll-answers">
@@ -77,7 +80,7 @@ class FinalResultsQuestion extends Component {
                         <div key={ans.key} className="v-final-results-poll-answer">
                             <span className="v-final-results-poll-answer-text">{ans.answer}</span>
                             <span className="v-final-results-poll-answer-votes">{ans.votes}</span>
-                            <span className="v-final-results-poll-answer-percentage">{ Math.floor((ans.votes / totalAnswers)*100) }%</span>
+                            <span className="v-final-results-poll-answer-percentage">{ totalAnswers > 0 ? Math.floor((ans.votes / totalAnswers)*100) : 0 }%</span>
                         </div>
                     )})}
                 </div>

@@ -80,18 +80,25 @@ class Results extends Component {
                 )}
                 </div>
                 <footer className="v-results-footer">
-                    <div className="v-results-footer-timer">
-
-                        <Timer type="countdown" time={nextPollStarts} />
-                    </div>
 
                     <div className="v-results-footer-poll">
                         <Link to="/">
-                            <img src="images/poll.svg" className="v-results-footer-poll-img"/>
+                            <button className="v-results-footer-poll-img c-button">
+                                <img src="images/poll.svg" />
+                            </button>
                         </Link>
                     </div>
 
+                    <div className="v-results-footer-timer">
+                        <Timer type="countdown" time={nextPollStarts} />
+                    </div>
+
+
                 </footer>
+
+                <div className="s-logo-container">
+                    <img className="s-logo-img" src="images/logo.png" />
+                </div>
             </div>
         )
 

@@ -79,7 +79,9 @@ class Poll extends Component {
                   </div>
 
                   <Link to="/results">
-                      <img src="images/results.svg" className="v-poll-link-results" />
+                      <button className="v-poll-link-results c-button ">
+                        <img src="images/results.svg"  />
+                      </button>
                   </Link>
 
                   <div className="s-logo-container">
