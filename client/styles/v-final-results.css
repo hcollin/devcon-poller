@@ -23,6 +23,9 @@
     min-width: 300px;
     max-width: 500px;
 
+    max-height: 350px;
+    height: auto;
+
     padding: 12px;
     margin: 6px;
 
@@ -30,6 +33,13 @@
     border-radius: 12px;
 
     position: relative;
+
+    user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    -moz-user-select: none;
+
+    cursor: pointer;
 
 }
 
@@ -39,6 +49,8 @@
     border-bottom: solid 1px white;
     display: block;
     margin-bottom: 3px;
+    user-select: none;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.75);
 
 }
 
@@ -55,11 +67,15 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    user-select: none;
 
     background-color: rgba(255,255,255, 0.2);
 
     font-size: 24px;
     font-weight: bold;
+    color: rgba(255, 192, 192, 0.8);
+
+    box-shadow: inset 0 0 8px 4px rgba(0,0,0,0.5);
 
 }
 
@@ -67,6 +83,12 @@
     display: flex;
     flex-direction: column;
     flex-wrap: nowrap;
+
+}
+
+.v-final-results-footer {
+    flex: 0 0 auto;
+    height: 64px;
 }
 
 .v-final-results-poll-answer {
@@ -80,6 +102,24 @@
     width: 100%;
 
     flex-direction: row;
+    padding: 2px 6px;
+
+    background-color: rgba(255,255,255,0.1);
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.75);
+}
+.v-final-results-poll-answer:first-child {
+    background-color: rgba(255,255,255,0.4);
+    color: rgba(255, 32, 32, 1);
+}
+
+.v-final-results-poll-answer:nth-child(2) {
+    background-color: rgba(255,255,255,0.3);
+    color: rgba(255, 128, 128, 1);
+}
+
+.v-final-results-poll-answer:nth-child(3) {
+    background-color: rgba(255,255,255,0.2);
+    color: rgba(255, 192, 192, 1);
 }
 
 .v-final-results-poll-answer-text {
@@ -87,6 +127,7 @@
     display: flex;
     align-items: center;
     justify-content: flex-start;
+    user-select: none;
 }
 
 .v-final-results-poll-answer-votes {
@@ -94,6 +135,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    user-select: none;
 }
 
 .v-final-results-poll-answer-percentage {
@@ -101,5 +143,6 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    user-select: none;
 
 }

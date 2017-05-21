@@ -20,61 +20,16 @@ class FinalResults extends Component {
 
         return (
             <div className="v-final-results">
-                <header className="v-final-results-header">
-                    <h1>Final Results</h1>
-                </header>
-
+                
                 <div className="v-final-results-container">
                     {allPolls && allPolls.map((poll) => {
-
-                        let votesPerAnswer = [];
-                        const totalAnswers = poll.votes.length;
-
-                        for(let i = 0; i < poll.answers.length; i++) {
-                            const answer = poll.answers[i];
-                            let ansres = {
-                                answer: answer.text,
-                                key: answer.key,
-                                votes: 0
-                            };
-
-                            for(let v = 0; v < poll.votes.length; v++) {
-                                const vote = poll.votes[v];
-                                if(vote.answer === answer.key) {
-                                    ansres.votes++;
-                                }
-                            }
-                            votesPerAnswer.push(ansres);
-                        }
-
-                        votesPerAnswer.sort((a, b) => {
-                           if( a.votes < b.votes) {
-                               return 1;
-                           }
-                            if( a.votes > b.votes) {
-                                return -1;
-                            }
-                            return 0;
-                        });
-
                         return (
-                            <div key={poll.key} className="v-final-results-poll">
-                                <span className="v-final-results-poll-question">{poll.question}</span>
-                                <span className="v-final-results-poll-totalvotes">{poll.votes.length}</span>
-                                <div className="v-final-results-poll-answers">
-                                    {votesPerAnswer.map((ans) => (
-                                        <div key={ans.key} className="v-final-results-poll-answer">
-                                            <span className="v-final-results-poll-answer-text">{ans.answer}</span>
-                                            <span className="v-final-results-poll-answer-votes">{ans.votes}</span>
-                                            <span className="v-final-results-poll-answer-percentage">{ Math.floor((ans.votes / totalAnswers)*100) }%</span>
-
-
-                                        </div>
-                                    ))}
-                                </div>
-                            </div>
+                            <FinalResultsQuestion poll={poll} key={poll.key} />
                         );
                     })}
+                </div>
+
+                <div className="v-final-results-footer">
                 </div>
 
 
