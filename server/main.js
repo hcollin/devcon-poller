@@ -30,13 +30,15 @@ Meteor.startup(() => {
         // Tekniikka
         Meteor.call('polls.insert', "jsframework",  4 , "Suosikki JS Framework tai alusta?");
         Meteor.call('polls.insert', "os",           1 , "Käyttöjärjestelmänä käytän mieluiten?");
-        Meteor.call('polls.insert', "ide",          2 , "Kehitysympäristö suosikkini on?");
+        Meteor.call('polls.insert', "ide",          2 , "Kirjoitan koodini mieluiten...");
         Meteor.call('polls.insert', "language",     3 , "Jos voisin valita seuraavan projektin pääkielen...");
         Meteor.call('polls.insert', "role",         5 , "Työskentelisin projektissa mieluiten?");
+        Meteor.call('polls.insert', "vcs",          8 , "Kun koodi pitää versioda, niin...");
 
 
         // Hauskat
         Meteor.call('polls.insert', "offices",      0 , "Cinian seuraava toimisto pitäisi avata...");
+        Meteor.call('polls.insert', "drinks",       9 , "Kun juon, otan...");
 
 
 
@@ -82,7 +84,7 @@ Meteor.startup(() => {
         Meteor.call('polls.addanswer', "ide", "atom", "Atom");
         Meteor.call('polls.addanswer', "ide", "vim", "Vim");
         Meteor.call('polls.addanswer', "ide", "emacs", "Emacs");
-        Meteor.call('polls.addanswer', "ide", "other", "Something else");
+        Meteor.call('polls.addanswer', "ide", "notepad", "Notepad");
 
         Meteor.call('polls.addanswer', "language", "python", "Python");
         Meteor.call('polls.addanswer', "language", "js", "JavaScript");
@@ -124,7 +126,32 @@ Meteor.startup(() => {
         Meteor.call('polls.addanswer', "role", "test", "Testaajana");
         Meteor.call('polls.addanswer', "role", "pp", "Projektipäällikkönä");
         Meteor.call('polls.addanswer', "role", "sales", "Myyjänä");
-        Meteor.call('polls.addanswer', "role", "daboss", "Isona kihona");
+        Meteor.call('polls.addanswer', "role", "client", "Asiakkaana");
+
+        Meteor.call('polls.addanswer', "vcs", "cvs", "CVS");
+        Meteor.call('polls.addanswer', "vcs", "clearcase", "Clearcase");
+        Meteor.call('polls.addanswer', "vcs", "svn", "SVN");
+        Meteor.call('polls.addanswer', "vcs", "git", "GIT");
+        Meteor.call('polls.addanswer', "vcs", "hg", "Mercurial");
+        Meteor.call('polls.addanswer', "vcs", "bazaar", "Bazaar");
+        Meteor.call('polls.addanswer', "vcs", "perforce", "Perforce");
+        Meteor.call('polls.addanswer', "vcs", "disc", "Verkkolevy");
+        Meteor.call('polls.addanswer', "vcs", "nope", "En tartte");
+
+        Meteor.call('polls.addanswer', "drinks", "water", "Vettä");
+        Meteor.call('polls.addanswer', "drinks", "milk", "Maitoa");
+        Meteor.call('polls.addanswer', "drinks", "cola", "Colaa");
+
+        Meteor.call('polls.addanswer', "drinks", "beer", "Oluen");
+        Meteor.call('polls.addanswer', "drinks", "cider", "Siiderin");
+        Meteor.call('polls.addanswer', "drinks", "long", "Lonkeron");
+
+        Meteor.call('polls.addanswer', "drinks", "wine", "Viinin");
+        Meteor.call('polls.addanswer', "drinks", "whisky", "Viskin");
+        Meteor.call('polls.addanswer', "drinks", "vodka", "Vodkan");
+
+
+
 
 
 
