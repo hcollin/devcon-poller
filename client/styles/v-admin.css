@@ -10,6 +10,13 @@
     overflow: hidden;
 }
 
+.v-admin h2 {
+    margin-top: 6px;
+    margin-bottom: 6px;
+    padding-top: 6px;
+    border-top: dashed 2px rgba(255,255,255,0.5);
+}
+
 
 .v-admin-header {
     flex: 0 0 auto;
@@ -61,7 +68,7 @@
 
 .v-admin-polls-poll {
     flex: 0 0 auto;
-    height: 60px;
+    height: 30px;
     width: 100%;
     display: flex;
     flex-direction: row;
@@ -78,6 +85,48 @@
 
 .v-admin-polls-poll.active {
     background: linear-gradient(rgba(255,255,255,0.2) 0%, rgba(255,255,255,0.4) 50%, rgba(255,255,255,0.2) 100%);
+}
+
+
+
+/****
+ *SETTINGS
+ */
+
+.v-admin-settings-container {
+    display: flex;
+    flex-direction: row;
+    height: 100px;
+
+}
+.v-admin-setting-option {
+    flex: 2;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    height: 100%;
+    flex-direction: column;
+}
+
+
+.v-admin-setting-option-name {
+    font-size: 20px;
+    font-style: italic;
+    margin-bottom: 3px;
+    color: rgba(255,255,255,0.7);
+}
+
+.v-admin-settings-option-value {
+    padding: 3px 6px;
+    font-size: 16px;
+}
+
+.v-admin-settings-submit-container {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
 }
 
 

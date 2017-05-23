@@ -221,7 +221,7 @@ Meteor.startup(() => {
     // Test time : new Date(2017, 4, 24,9,30,0,0).getTime() = 1495607400000
 
     // Test date
-    Ticker.reset(1495607400000, 8.5);
+    Ticker.reset(1495607400000 , 8.5);
     Ticker.start();
 
 });

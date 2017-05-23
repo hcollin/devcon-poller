@@ -4,7 +4,7 @@ import Ticker from './../../server/Ticker.js';
 
 Meteor.methods({
     'ticker.reset'(startAt, questionLen) {
-        console.log("RESET!");
+        console.log("RESET!", startAt, questionLen);
         Ticker.reset(startAt, questionLen);
         Ticker.start();
     },
