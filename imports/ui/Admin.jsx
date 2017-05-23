@@ -16,7 +16,7 @@ class Admin extends Component {
 
 
         const state = PollsHelper.getState();
-        
+
 
         this.state = {
             startAt: 1495702800000,

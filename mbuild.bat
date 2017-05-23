@@ -1,0 +1,1 @@
+meteor deploy devcon2017.eu.meteorapp.com --settings .\settings.json
