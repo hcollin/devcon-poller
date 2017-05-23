@@ -28,23 +28,29 @@ Meteor.startup(() => {
         console.log("Populate questions!");
 
         // Tekniikka
-        Meteor.call('polls.insert', "jsframework",  4 , "Suosikki JS Framework tai alusta?");
-        Meteor.call('polls.insert', "os",           1 , "Käyttöjärjestelmänä käytän mieluiten?");
-        Meteor.call('polls.insert', "ide",          2 , "Kirjoitan koodini mieluiten...");
-        Meteor.call('polls.insert', "language",     3 , "Jos voisin valita seuraavan projektin pääkielen...");
-        Meteor.call('polls.insert', "role",         5 , "Työskentelisin projektissa mieluiten?");
-        Meteor.call('polls.insert', "vcs",          8 , "Kun koodi pitää versioda, niin...");
+        Meteor.call('polls.insert', "jsframework",  9 , "Suosikki JS Framework tai alusta?");
+        Meteor.call('polls.insert', "os",           10 , "Käyttöjärjestelmänä käytän mieluiten?");
+        Meteor.call('polls.insert', "ide",          4 , "Kirjoitan koodini mieluiten...");
+        Meteor.call('polls.insert', "language",     7 , "Jos voisin valita seuraavan projektin pääkielen...");
+        Meteor.call('polls.insert', "role",         15 , "Työskentelisin projektissa mieluiten?");
+        Meteor.call('polls.insert', "vcs",          12 , "Kun koodi pitää versioda, niin...");
+        Meteor.call('polls.insert', "www",          0 , "Ainut oikea selain on!");
+        Meteor.call('polls.insert', "tabs",         14 , "Tabeja selaimissani on auki kerralla?");
 
+        // Puheet
+        Meteor.call('polls.insert', "clojure",      1 , "Clojure sopii pelikehitykseen, vai sopiiko?");
+        Meteor.call('polls.insert', "jython",       3 , "Jythonissa on tulevaisuus! Varmasti?");
+        Meteor.call('polls.insert', "go",           5 , "Go on parasta! Onko?");
 
         // Hauskat
-        Meteor.call('polls.insert', "offices",      0 , "Cinian seuraava toimisto pitäisi avata...");
-        Meteor.call('polls.insert', "drinks",       9 , "Kun juon, otan...");
-
-
+        Meteor.call('polls.insert', "offices",      6 , "Cinian seuraava toimisto pitäisi avata...");
+        Meteor.call('polls.insert', "drinks",       13 , "Kun juon, otan...");
+        Meteor.call('polls.insert', "music",        2 , "Kun työskentelen, kuuntelen...");
 
         // DevCon
-        Meteor.call('polls.insert', "dcplace",             6, "DEVcon 2018 järjestetään...");
-        Meteor.call('polls.insert', "dcbestis",             7, "DEVconin paras osuus on?");
+        Meteor.call('polls.insert', "dcplace",      8, "DEVcon 2018 järjestetään...");
+        Meteor.call('polls.insert', "dcbestis",     11, "DEVconin paras osuus on?");
+        Meteor.call('polls.insert', "serious",      16, "Vastasin kysymyksiin tosissani?");
 
 
         // Meteor.call('polls.insert', "",             8, "");
@@ -52,6 +58,32 @@ Meteor.startup(() => {
         // Meteor.call('polls.insert', "",             10, "");
         // Meteor.call('polls.insert', "",             11, "");
         // Meteor.call('polls.insert', "",             12, "");
+
+        Meteor.call('polls.addanswer', "clojure", "ofcourse", "Toki sopii");
+        Meteor.call('polls.addanswer', "clojure", "maybe", "Osaan peleistä");
+        Meteor.call('polls.addanswer', "clojure", "notreally", "Ei oikein");
+        Meteor.call('polls.addanswer', "clojure", "agreewith", "Komppaan Tuomasta");
+        Meteor.call('polls.addanswer', "clojure", "sleeping", "Nukuin, sorry");
+
+
+        Meteor.call('polls.addanswer', "jython", "ofcourse", "Samaa mieltä");
+        Meteor.call('polls.addanswer', "jython", "maybe", "Ehkäpä");
+        Meteor.call('polls.addanswer', "jython", "nope", "No ei ole");
+        Meteor.call('polls.addanswer', "jython", "agreewith", "Komppaan Topia");
+        Meteor.call('polls.addanswer', "jython", "sleeping", "Nukuin edelleen");
+
+        Meteor.call('polls.addanswer', "go", "ofcourse", "Taatusti on");
+        Meteor.call('polls.addanswer', "go", "maybe", "Voihan se ollakin");
+        Meteor.call('polls.addanswer', "go", "nogo", "No Go");
+        Meteor.call('polls.addanswer', "go", "agreewith", "Komppaan Rikua");
+        Meteor.call('polls.addanswer', "go", "sleeping", "Just heräsin");
+
+        Meteor.call('polls.addanswer', "serious", "fully", "Tietenkin!");
+        Meteor.call('polls.addanswer', "serious", "nearly", "Suurimpaan osaan");
+        Meteor.call('polls.addanswer', "serious", "soso", "Suurinpiirtein");
+        Meteor.call('polls.addanswer', "serious", "some", "Muutamiin, ehkä");
+        Meteor.call('polls.addanswer', "serious", "joke", "Vitsailetko?");
+        Meteor.call('polls.addanswer', "serious", "nocomments", "En kommentoi");
 
 
 
@@ -94,7 +126,7 @@ Meteor.startup(() => {
         Meteor.call('polls.addanswer', "language", "csharp", "C#");
         Meteor.call('polls.addanswer', "language", "Clojure", "Clojure");
         Meteor.call('polls.addanswer', "language", "go", "Go");
-        Meteor.call('polls.addanswer', "language", "rust", "Rust");
+        Meteor.call('polls.addanswer', "language", "php", "PHP");
 
         Meteor.call('polls.addanswer', "offices", "turku", "Turkuun");
         Meteor.call('polls.addanswer', "offices", "lappeenranta", "Lappeenrantaan");
@@ -111,7 +143,7 @@ Meteor.startup(() => {
         Meteor.call('polls.addanswer', "dcplace", "hesa", "Helsingissä");
         Meteor.call('polls.addanswer', "dcplace", "jyvaskyla", "Jyväskylässä");
         Meteor.call('polls.addanswer', "dcplace", "laiva", "Risteilyllä");
-        Meteor.call('polls.addanswer', "dcplace", "muu", "Jossain muualla");
+        Meteor.call('polls.addanswer', "dcplace", "cabin", "Mökillä");
         Meteor.call('polls.addanswer', "dcplace", "never", "Ei enään ikinä!");
 
         Meteor.call('polls.addanswer', "dcbestis", "intspeak", "Oman väen esitykset");
@@ -150,16 +182,47 @@ Meteor.startup(() => {
         Meteor.call('polls.addanswer', "drinks", "whisky", "Viskin");
         Meteor.call('polls.addanswer', "drinks", "vodka", "Vodkan");
 
+        Meteor.call('polls.addanswer', "www", "chrome", "Chrome");
+        Meteor.call('polls.addanswer', "www", "ff", "Firefox");
+        Meteor.call('polls.addanswer', "www", "opera", "Opera");
+        Meteor.call('polls.addanswer', "www", "safari", "Safari");
+        Meteor.call('polls.addanswer', "www", "ie", "Internet Explorer");
+        Meteor.call('polls.addanswer', "www", "edge", "Edge");
+        Meteor.call('polls.addanswer', "www", "dragon", "Comodo Dragon");
+        Meteor.call('polls.addanswer', "www", "lynx", "Lynx");
+        Meteor.call('polls.addanswer', "www", "muu", "Mikä tahansa muu");
 
+        Meteor.call('polls.addanswer', "tabs", "max1", "Korkeintaan 1");
+        Meteor.call('polls.addanswer', "tabs", "alle5", "Alle 5");
+        Meteor.call('polls.addanswer', "tabs", "5to10", "5 - 10");
+        Meteor.call('polls.addanswer', "tabs", "11to20", "11 - 20");
+        Meteor.call('polls.addanswer', "tabs", "21to30", "21 - 30");
+        Meteor.call('polls.addanswer', "tabs", "31to50", "31 - 50");
+        Meteor.call('polls.addanswer', "tabs", "51to75", "51 - 75");
+        Meteor.call('polls.addanswer', "tabs", "76to99", "75 - 99");
+        Meteor.call('polls.addanswer', "tabs", "liikaa", "Liikaa, ei kykene");
 
+        Meteor.call('polls.addanswer', "music", "good", "Hyvää musaa");
+        Meteor.call('polls.addanswer', "music", "bad", "Huonoa musaa");
+        Meteor.call('polls.addanswer', "music", "radio", "Radiota");
+        Meteor.call('polls.addanswer', "music", "client", "Asiakasta");
+        Meteor.call('polls.addanswer', "music", "boss", "Esimiestä");
+        Meteor.call('polls.addanswer', "music", "coder", "Naapuria");
+        Meteor.call('polls.addanswer', "music", "help",  "Neuvoja");
+        Meteor.call('polls.addanswer', "music", "mad",  "Ääntä päässäni");
+        Meteor.call('polls.addanswer', "music", "silence", "Hiljaisuutta");
 
 
 
     }
 
 
+    // Real target time new Date(2017, 4, 25,12,0,0,0).getTime() = 1495702800000
+    // Test time : new Date(2017, 4, 24,9,30,0,0).getTime() = 1495607400000
 
-    Ticker.reset(new Date().getTime() + 5000, 0.3);
+    // Test date
+    Ticker.reset(1495607400000, 8.5);
     Ticker.start();
 
 });
+
