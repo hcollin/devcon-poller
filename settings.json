@@ -1,0 +1,7 @@
+{
+  "galaxy.meteor.com": {
+    "env": {
+      "MONGO_URL": "mongodb://devcon:PaskaksiVaanKaikki@ds151661.mlab.com:51661/devcon2017"
+    }
+  }
+}
