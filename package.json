@@ -1,6 +1,12 @@
 {
-  "name": "simple-todos",
+  "name": "devcon-poller",
   "private": true,
+  "version": "0.9.0",
+  "description": "A Rapid Fire Questionary for Cinia DEVcon 2017.",
+  "author": {
+    "name": "Henrik Collin",
+    "email": "henrik.collin@cinia.fi"
+  },
   "scripts": {
     "start": "meteor run"
   },
