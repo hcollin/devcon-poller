@@ -60,6 +60,10 @@ const PollsHelper = {
         }
         return false;
     },
+    isLive: () => {
+        const state = PollsHelper.getState();
+        return state.isLive;
+    },
     getNextPollStartTime: () => {
         const state = PollsHelper.getState();
         return state.startAt + ((state.currentPoll+1) * PollsHelper.getPollLife());

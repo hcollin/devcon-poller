@@ -86,7 +86,7 @@ class Results extends Component {
                 <div className="v-results-footer-poll">
                     <Link to="/">
                         <button className="v-results-footer-poll-img c-button">
-                            <img src="images/poll.svg" />
+                            <img src="images/vote.svg" />
                         </button>
                     </Link>
                 </div>

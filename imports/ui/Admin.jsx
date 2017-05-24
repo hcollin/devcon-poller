@@ -32,6 +32,7 @@ class Admin extends Component {
         this.onChangeStartAt = this.onChangeStartAt.bind(this);
 
         this.handleClearDb = this.handleClearDb.bind(this);
+        this.handleLiveSetup = this.handleLiveSetup.bind(this);
 
     }
 
@@ -69,6 +70,16 @@ class Admin extends Component {
 
     }
 
+    handleLiveSetup() {
+        console.log("START LIVE SETUP! ADMIN WILL BE DISABLED!");
+
+        Meteor.call('polls.clear');
+        Meteor.call('ticker.resetQuestions');
+
+        Meteor.call('ticker.reset', 1495702800000, 9.2);
+        Meteor.call('masterstate.golive');
+    }
+
     handleClearDb() {
         console.log("Clear Db");
         Meteor.call('polls.clear');
@@ -94,6 +105,16 @@ class Admin extends Component {
         const state = PollsHelper.getState();
 
 
+        if(state.isLive) {
+            return (
+                <div className="v-admin">
+                    Admin disabled
+                </div>
+            );
+        }
+
+
+
 
         const currentPoll = PollsHelper.getCurrent();
         let allPolls = Polls.find({}, { sort: { order: 1 }}).fetch();
@@ -115,6 +136,7 @@ class Admin extends Component {
                 <div className="v-admin-content">
 
                     <div className="v-admin-toolbar">
+                        <button onClick={this.handleLiveSetup} className="c-button v-admin-button-reset"><img src="images/live.svg" /></button>
                         <button onClick={this.handleReset} className="c-button v-admin-button-reset"><img src="images/nuke.svg" /></button>
                         <button onClick={this.handleDebug} className="c-button v-admin-button-reset"><img src="images/debug.svg" /></button>
                         <button onClick={this.handleClearDb} className="c-button v-admin-button-reset"><img src="images/database.svg" /></button>

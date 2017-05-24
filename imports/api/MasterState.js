@@ -20,7 +20,8 @@ Meteor.methods({
             liveTime: defaultLiveTime,
             currentPoll: -1,
             key: "POLLER",
-            mainState: -1
+            mainState: -1,
+            isLive: false
         });
     },
     'masterstate.reset'(startTime, questionLen) {
@@ -40,6 +41,11 @@ Meteor.methods({
     'masterstate.setstatus'(targetStatus) {
         MasterState.update({key: "POLLER"}, {
             $set: { mainState: targetStatus}
+        });
+    },
+    'masterstate.golive'() {
+        MasterState.update({key: "POLLER"}, {
+            $set: { isLive: true }
         });
     }
 });
