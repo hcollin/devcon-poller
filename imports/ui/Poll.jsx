@@ -72,7 +72,7 @@ class Poll extends Component {
             const nextPollStarts = PollsHelper.getNextPollStartTime();
 
             return (
-              <div className="v-poll">
+              <div className="v-poll v-poll-answered">
                   <h2 className="v-poll-thank-you">Kiitos!</h2>
                   <div className="v-poll-timer-next">
                       <Timer type="countdown"  time={nextPollStarts} />

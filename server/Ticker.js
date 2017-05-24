@@ -11,15 +11,17 @@ let Ticker = function() {
 
     function createQuestions() {
 
+
+
         // Tekniikka
         Meteor.call('polls.insert', "jsframework",  9 , "Suosikki JS Framework tai alusta?");
         Meteor.call('polls.insert', "os",           10 , "Käyttöjärjestelmänä käytän mieluiten?");
         Meteor.call('polls.insert', "ide",          4 , "Kirjoitan koodini mieluiten...");
         Meteor.call('polls.insert', "language",     7 , "Jos voisin valita seuraavan projektin pääkielen...");
-        Meteor.call('polls.insert', "role",         15 , "Työskentelisin projektissa mieluiten?");
+        Meteor.call('polls.insert', "role",         14 , "Työskentelisin projektissa mieluiten?");
         Meteor.call('polls.insert', "vcs",          12 , "Kun koodi pitää versioda, niin...");
         Meteor.call('polls.insert', "www",          0 , "Ainut oikea selain on!");
-        Meteor.call('polls.insert', "tabs",         14 , "Tabeja selaimissani on auki kerralla?");
+        Meteor.call('polls.insert', "tabs",         13 , "Tabeja selaimissani on auki kerralla?");
 
         // Puheet
         Meteor.call('polls.insert', "clojure",      1 , "Clojure sopii pelikehitykseen, vai sopiiko?");
@@ -28,13 +30,13 @@ let Ticker = function() {
 
         // Hauskat
         Meteor.call('polls.insert', "offices",      6 , "Cinian seuraava toimisto pitäisi avata...");
-        Meteor.call('polls.insert', "drinks",       13 , "Kun juon, otan...");
+        // Meteor.call('polls.insert', "drinks",       13 , "Kun juon, otan...");
         Meteor.call('polls.insert', "music",        2 , "Kun työskentelen, kuuntelen...");
 
         // DevCon
         Meteor.call('polls.insert', "dcplace",      8, "DEVcon 2018 järjestetään...");
         Meteor.call('polls.insert', "dcbestis",     11, "DEVconin paras osuus on?");
-        Meteor.call('polls.insert', "serious",      16, "Vastasin kysymyksiin tosissani?");
+        Meteor.call('polls.insert', "serious",      15, "Vastasin kysymyksiin tosissani?");
 
 
         // Vastaukset
@@ -245,7 +247,8 @@ let Ticker = function() {
         reset: reset,
         start: start,
         stop: stop,
-        continue: poller
+        continue: poller,
+        questions: createQuestions
     };
 };
 

@@ -46,3 +46,17 @@
 
 
 }
+
+
+@media screen and (orientation: portrait) and (max-width: 450px), screen and (orientation: landscape) and (max-width: 800px) {
+    .c-button {
+        width: 48px;
+        height: 48px;
+        border-radius: 9px;
+    }
+
+    .c-button > img {
+        width: 32px;
+        height: 32px;
+    }
+}

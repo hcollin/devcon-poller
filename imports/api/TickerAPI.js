@@ -15,5 +15,10 @@ Meteor.methods({
     'ticker.stop'() {
         console.log("STOP!");
         Ticker.stop();
+    },
+    'ticker.resetQuestions'() {
+        console.log("reset questions");
+
+        Ticker.questions();
     }
 });

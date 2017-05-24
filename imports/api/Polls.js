@@ -4,6 +4,7 @@ import { check } from 'meteor/check';
 
 import PollsHelper from './PollsHelper.js';
 
+
 export const Polls = new Mongo.Collection('polls');
 
 if (Meteor.isServer) {
@@ -69,5 +70,16 @@ Meteor.methods({
         Polls.update({}, {
             $set: {votes: [], active: false}
         }, {multi: true});
+    },
+    'polls.clear'() {
+        console.log("polls.clear");
+        const state = PollsHelper.getState();
+        if(state.mainState <= 1 ) {
+            Polls.remove({});
+        }  else {
+            throw Meteor.error("Cannot clear db when questionary is running.");
+        }
+
+
     }
 });

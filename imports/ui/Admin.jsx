@@ -24,11 +24,14 @@ class Admin extends Component {
         };
 
         this.handleReset = this.handleReset.bind(this);
+        this.handleResetNow = this.handleResetNow.bind(this);
         this.handleDebug = this.handleDebug.bind(this);
         this.handleStart = this.handleStart.bind(this);
 
         this.onChangeLifeTime = this.onChangeLifeTime.bind(this);
         this.onChangeStartAt = this.onChangeStartAt.bind(this);
+
+        this.handleClearDb = this.handleClearDb.bind(this);
 
     }
 
@@ -55,9 +58,25 @@ class Admin extends Component {
         });
     }
 
+    handleResetNow() {
+        console.log("Quick debug loop!", this.state.startAt, this.state.lifeTime);
+        this.setState({
+            startAt: new Date().getTime() + 4000,
+            lifeTime: 10
+        }, () => {
+            Meteor.call('ticker.reset', this.state.startAt, this.state.lifeTime);
+        });
+
+    }
+
+    handleClearDb() {
+        console.log("Clear Db");
+        Meteor.call('polls.clear');
+        Meteor.call('ticker.resetQuestions');
+    }
 
     handleReset() {
-        console.log("reset!");
+        console.log("reset!", this.state.startAt, this.state.lifeTime);
         Meteor.call('ticker.reset', this.state.startAt, this.state.lifeTime);
     }
 
@@ -98,6 +117,7 @@ class Admin extends Component {
                     <div className="v-admin-toolbar">
                         <button onClick={this.handleReset} className="c-button v-admin-button-reset"><img src="images/nuke.svg" /></button>
                         <button onClick={this.handleDebug} className="c-button v-admin-button-reset"><img src="images/debug.svg" /></button>
+                        <button onClick={this.handleClearDb} className="c-button v-admin-button-reset"><img src="images/database.svg" /></button>
                         {/*<button onClick={this.handleStart} className="c-button v-admin-button-reset">GO!</button>*/}
 
                     </div>
@@ -134,6 +154,7 @@ class Admin extends Component {
                                 </div>
                                 <div className="v-admin-settings-submit-container">
                                     <button onClick={this.handleReset} className="c-button v-admin-button-reset"><img src="images/nuke.svg" /></button>
+                                    <button onClick={this.handleResetNow} className="c-button v-admin-button-reset"><img src="images/nuke.svg" /></button>
                                 </div>
                             </div>
 

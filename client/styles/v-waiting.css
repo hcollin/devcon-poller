@@ -10,30 +10,6 @@
     overflow: hidden;
 }
 
-.v-waiting-logo-container {
-    position: absolute;
-    bottom: 0;
-    right: 0;
-
-    height: 100px;
-    padding-left: 10%;
-    background-color: rgba(255,255,255,0.5);
-
-    border-top-left-radius: 200px 100px;
-
-    border-left: solid 20px rgba(255, 0, 0, 0.75);
-    border-top: solid 2px rgba(255, 0, 0, 0.75);
-
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-
-}
-.v-waiting-logo {
-
-    max-height: 100px;
-}
-
 .v-waiting-slogan-container {
     flex: 3;
     width: 100%;
@@ -73,9 +49,37 @@
     font-size: 24px;
     font-style: italic;
 
-
 }
 
 .v-waiting-countdown-container > .c-timer{
     font-size: 48px;
+}
+
+
+@media screen and (orientation: portrait) and (max-width: 450px) {
+
+    .v-waiting-slogan-container {
+        flex: 1;
+        padding-bottom: 32px;
+    }
+    .v-waiting-timer-container {
+        flex: 1;
+
+    }
+}
+
+@media screen and (orientation: landscape) and (max-width: 800px) {
+    .v-waiting {
+        flex-direction: row;
+    }
+
+
+    .v-waiting-slogan-container {
+        flex: 1;
+
+    }
+    .v-waiting-timer-container {
+        flex: 1;
+
+    }
 }
