@@ -95,6 +95,10 @@ class Results extends Component {
                     <Timer type="countdown" time={nextPollStarts} key={this.props.question.key} />
                 </div>
 
+                <div className="v-results-url">
+                    http://devcon2017.eu.meteorapp.com/
+                </div>
+
 
 
                 <div className="s-logo-container">

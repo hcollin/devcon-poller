@@ -37,7 +37,7 @@ class Waiting extends Component {
                 </div>
                 <div className="v-waiting-timer-container">
                     <h2 className="v-waiting-countdown-container">
-                        <label>Kyselyt alkavat</label>
+                        <label>http://devcon2017.eu.meteorapp.com/</label>
                         {started &&
                             <Timer type="countdown" time={countdown} />
                         }
