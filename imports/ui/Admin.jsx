@@ -76,7 +76,9 @@ class Admin extends Component {
         Meteor.call('polls.clear');
         Meteor.call('ticker.resetQuestions');
 
-        Meteor.call('ticker.reset', 1495702800000, 9.2);
+
+        const startAt = new Date().getTime() + 10000;
+        Meteor.call('ticker.reset', startAt, 1);
         Meteor.call('masterstate.golive');
     }
 
@@ -106,11 +108,11 @@ class Admin extends Component {
 
 
         if(state.isLive) {
-            return (
+            /*return (
                 <div className="v-admin">
                     Admin disabled
                 </div>
-            );
+            );*/
         }
 
 

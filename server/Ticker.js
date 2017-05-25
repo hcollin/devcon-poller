@@ -4,6 +4,8 @@ import { Polls } from '../imports/api/Polls.js';
 
 import PollsHelper from '../imports/api/PollsHelper.js';
 
+let _ticker = false;
+
 let Ticker = function() {
 
     let ticker = false;
@@ -221,14 +223,14 @@ let Ticker = function() {
         const pollCount = Polls.find().count();
         const pollLife = PollsHelper.getPollLife();
 
-        ticker = Meteor.setInterval(() => {
+        _ticker = Meteor.setInterval(() => {
             const state = PollsHelper.getState();
             console.log("\tTicker: Current Poll", state.currentPoll);
             if(state.currentPoll >= (pollCount - 1)) {
-                Meteor.clearInterval(ticker);
+                Meteor.clearInterval(_ticker);
                 PollsHelper.setPoll(-1);
                 PollsHelper.setStatusToDone();
-                Meteor.clearInterval(ticker);
+                Meteor.clearInterval(_ticker);
             } else {
                 PollsHelper.nextPoll();
             }
@@ -237,7 +239,8 @@ let Ticker = function() {
 
 
     function stop() {
-        Meteor.clearInterval(ticker);
+        console.log("ticker", _ticker);
+        Meteor.clearInterval(_ticker);
         PollsHelper.setStatusToStopped();
         // PollsHelper.setPoll(-1);
         // PollsHelper.setStatusToDone();
